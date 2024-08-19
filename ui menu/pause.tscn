@@ -1,0 +1,195 @@
+[gd_scene load_steps=5 format=3 uid="uid://cj25o88urgm2f"]
+
+[ext_resource type="Script" path="res://ui menu/pause.gd" id="1_s1npe"]
+
+[sub_resource type="Animation" id="Animation_cm0oa"]
+resource_name = "pause"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pause:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1000, 2.08165e-12), Vector2(500, 2.08165e-12), Vector2(2.08165e-12, 2.08165e-12)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pause:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.174533, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("pause:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_mppud"]
+resource_name = "unpause"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pause:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2.08165e-12, 2.08165e-12), Vector2(2.08165e-12, 100), Vector2(2.08165e-12, 400), Vector2(2.08165e-12, 600)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pause:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.349066]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("pause:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0ri6a"]
+_data = {
+"pause": SubResource("Animation_cm0oa"),
+"unpause": SubResource("Animation_mppud")
+}
+
+[node name="pause_screen" type="Node2D"]
+process_mode = 3
+
+[node name="pause" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1000.0
+offset_right = 1000.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(600, 350)
+mouse_filter = 2
+script = ExtResource("1_s1npe")
+
+[node name="ColorRect" type="ColorRect" parent="pause"]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 48.0
+offset_right = 1058.0
+offset_bottom = 602.0
+color = Color(0, 0, 0, 0.784314)
+
+[node name="paused" type="Label" parent="pause"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 159.0
+offset_top = 244.0
+offset_right = 436.0
+offset_bottom = 344.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Game Paused"
+
+[node name="unpause" type="Button" parent="pause" groups=["pause", "ui_button"]]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+offset_left = 750.0
+offset_top = 100.0
+offset_right = 1050.0
+offset_bottom = 169.0
+focus_neighbor_left = NodePath("../title_screen")
+focus_neighbor_top = NodePath("../title_screen")
+focus_neighbor_right = NodePath("../options")
+focus_neighbor_bottom = NodePath("../options")
+focus_next = NodePath("../options")
+focus_previous = NodePath("../title_screen")
+text = "Unpause"
+flat = true
+
+[node name="options" type="Button" parent="pause" groups=["ui_button"]]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 750.0
+offset_top = 230.0
+offset_right = 1050.0
+offset_bottom = 299.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_neighbor_left = NodePath("../unpause")
+focus_neighbor_top = NodePath("../unpause")
+focus_neighbor_right = NodePath("../title_screen")
+focus_neighbor_bottom = NodePath("../title_screen")
+focus_next = NodePath("../title_screen")
+focus_previous = NodePath("../unpause")
+text = "Options"
+flat = true
+
+[node name="title_screen" type="Button" parent="pause" groups=["ui_button"]]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 750.0
+offset_top = 360.0
+offset_right = 1050.0
+offset_bottom = 429.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_neighbor_left = NodePath("../options")
+focus_neighbor_top = NodePath("../options")
+focus_neighbor_right = NodePath("../unpause")
+focus_neighbor_bottom = NodePath("../unpause")
+focus_next = NodePath("../unpause")
+focus_previous = NodePath("../options")
+text = "Back to Title Screen"
+flat = true
+metadata/scene = "ui menu/title"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0ri6a")
+}

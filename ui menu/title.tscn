@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://dnu6pfxxoq8pi"]
+
+[node name="title" type="Node2D"]
+
+[node name="Replace this with logo" type="Label" parent="."]
+offset_top = 308.0
+offset_right = 1235.0
+offset_bottom = 581.0
+theme_override_font_sizes/font_size = 200
+text = "Cyber Cider3"
+
+[node name="play_game" type="Button" parent="." groups=["ui_button"]]
+offset_left = 1330.0
+offset_top = 184.0
+offset_right = 1832.0
+offset_bottom = 329.0
+theme_override_font_sizes/font_size = 100
+text = "Play game"
+metadata/scene = "3D/city"
+
+[node name="minigames" type="Button" parent="." groups=["ui_button"]]
+offset_left = 1330.0
+offset_top = 364.0
+offset_right = 1865.0
+offset_bottom = 509.0
+theme_override_font_sizes/font_size = 100
+text = "Minigames"
+metadata/scene = "minigames/minigames"
+
+[node name="save" type="Button" parent="." groups=["ui_button"]]
+offset_left = 1330.0
+offset_top = 578.0
+offset_right = 1562.0
+offset_bottom = 723.0
+theme_override_font_sizes/font_size = 100
+text = "Save"
+metadata/save = true
+
+[node name="load" type="Button" parent="." groups=["ui_button"]]
+offset_left = 1330.0
+offset_top = 764.0
+offset_right = 1574.0
+offset_bottom = 909.0
+theme_override_font_sizes/font_size = 100
+text = "Load"
+metadata/save = false

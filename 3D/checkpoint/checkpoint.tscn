@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://copcm83egyebj"]
+
+[ext_resource type="PackedScene" uid="uid://h2adrjdyusrc" path="res://3D/checkpoint/checkpoint.glb" id="1_d4rc1"]
+[ext_resource type="Script" path="res://3D/checkpoint/checkpoint.gd" id="2_1u3db"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ktxfr"]
+size = Vector3(1.8, 2, 2.6)
+
+[node name="checkpoint" instance=ExtResource("1_d4rc1")]
+script = ExtResource("2_1u3db")
+
+[node name="Cube" parent="." index="0"]
+transform = Transform3D(-0.919, -1.50996e-09, 0, 1.38765e-07, -0.01, 0, 0, 0, 1.296, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_ktxfr")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

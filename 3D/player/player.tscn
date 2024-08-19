@@ -1,0 +1,159 @@
+[gd_scene load_steps=18 format=3 uid="uid://d1hcf3nwyb30p"]
+
+[ext_resource type="Script" path="res://3D/player/player.gd" id="1_yem3m"]
+[ext_resource type="SpriteFrames" uid="uid://c4g3utpl47nf1" path="res://3D/player/sprites/animation.tres" id="2_5iw2l"]
+[ext_resource type="Script" path="res://3D/player/statemachine/statemachine.gd" id="3_7d0tt"]
+[ext_resource type="Texture2D" uid="uid://k2mv1x5gqpx" path="res://3D/player/sprites/shadow.png" id="3_yqjpk"]
+[ext_resource type="Script" path="res://3D/player/statemachine/idle.gd" id="4_2vd8p"]
+[ext_resource type="Script" path="res://3D/player/statemachine/walk.gd" id="5_hklu5"]
+[ext_resource type="Script" path="res://3D/player/statemachine/jump.gd" id="6_ic784"]
+[ext_resource type="Script" path="res://3D/player/statemachine/fall.gd" id="7_wsg8b"]
+[ext_resource type="Script" path="res://3D/player/statemachine/climb.gd" id="8_qm70e"]
+[ext_resource type="Script" path="res://3D/player/statemachine/climb_jump.gd" id="9_ybsah"]
+[ext_resource type="Script" path="res://3D/player/statemachine/dive.gd" id="10_v58nc"]
+[ext_resource type="Script" path="res://3D/player/statemachine/crawl.gd" id="11_ulmyl"]
+[ext_resource type="Script" path="res://3D/player/statemachine/cut_scene.gd" id="12_3oceu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qckqf"]
+size = Vector3(1, 1.1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ffb76"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_cwxlf"]
+device = -1
+pressed = true
+keycode = 4194332
+
+[sub_resource type="Shortcut" id="Shortcut_1hbyg"]
+events = [SubResource("InputEventKey_cwxlf"), null]
+
+[node name="Yarts" type="CharacterBody3D"]
+script = ExtResource("1_yem3m")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+sprite_frames = ExtResource("2_5iw2l")
+animation = &"wakeup"
+frame = 13
+frame_progress = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0437012, 0)
+shape = SubResource("BoxShape3D_qckqf")
+
+[node name="ceiling_checker" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_ffb76")
+target_position = Vector3(0, 1, 0)
+
+[node name="shadow" type="Decal" parent="."]
+size = Vector3(1, 0.001, 1)
+texture_albedo = ExtResource("3_yqjpk")
+modulate = Color(1, 1, 1, 0.588235)
+
+[node name="shadow_ray" type="RayCast3D" parent="."]
+target_position = Vector3(0, -100, 0)
+
+[node name="light" type="OmniLight3D" parent="."]
+
+[node name="statemachine" type="Node" parent="."]
+script = ExtResource("3_7d0tt")
+
+[node name="idle" type="Node" parent="statemachine"]
+script = ExtResource("4_2vd8p")
+
+[node name="walk" type="Node" parent="statemachine"]
+script = ExtResource("5_hklu5")
+
+[node name="jump" type="Node" parent="statemachine"]
+script = ExtResource("6_ic784")
+
+[node name="jump_timer" type="Timer" parent="statemachine/jump"]
+one_shot = true
+
+[node name="fall" type="Node" parent="statemachine"]
+script = ExtResource("7_wsg8b")
+
+[node name="coyote_timer" type="Timer" parent="statemachine/fall"]
+one_shot = true
+
+[node name="jump_buffer_timer" type="Timer" parent="statemachine/fall"]
+one_shot = true
+
+[node name="climb" type="Node" parent="statemachine"]
+script = ExtResource("8_qm70e")
+
+[node name="climb_jump" type="Node" parent="statemachine"]
+script = ExtResource("9_ybsah")
+
+[node name="Timer" type="Timer" parent="statemachine/climb_jump"]
+one_shot = true
+
+[node name="dive" type="Node" parent="statemachine"]
+script = ExtResource("10_v58nc")
+
+[node name="Timer" type="Timer" parent="statemachine/dive"]
+one_shot = true
+
+[node name="crawl" type="Node" parent="statemachine"]
+script = ExtResource("11_ulmyl")
+
+[node name="cut_scene" type="Node" parent="statemachine"]
+script = ExtResource("12_3oceu")
+
+[node name="debug" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="debug"]
+visible = false
+custom_minimum_size = Vector2(500, 0)
+offset_top = 39.0
+offset_right = 134.0
+offset_bottom = 79.0
+
+[node name="fps" type="Label" parent="debug/VBoxContainer"]
+layout_mode = 2
+text = "Current FPS: "
+
+[node name="position" type="Label" parent="debug/VBoxContainer"]
+layout_mode = 2
+text = "Current Position: "
+
+[node name="velocity" type="Label" parent="debug/VBoxContainer"]
+layout_mode = 2
+text = "Current Velocity: "
+
+[node name="state" type="Label" parent="debug/VBoxContainer"]
+layout_mode = 2
+text = "Current State: "
+
+[node name="animation" type="Label" parent="debug/VBoxContainer"]
+layout_mode = 2
+text = "Current Animation: "
+
+[node name="camera_rotation" type="Label" parent="debug/VBoxContainer"]
+layout_mode = 2
+text = "Camera Rotation: "
+
+[node name="ceiling_checker" type="Label" parent="debug/VBoxContainer"]
+layout_mode = 2
+text = "Celing Checker Collision: "
+
+[node name="unlock_all" type="Button" parent="debug/VBoxContainer"]
+layout_mode = 2
+text = "Unlock All Abilities"
+
+[node name="CheckButton" type="CheckButton" parent="debug"]
+offset_right = 44.0
+offset_bottom = 24.0
+shortcut = SubResource("Shortcut_1hbyg")
+text = "show debug"
+
+[connection signal="landed" from="." to="statemachine/dive" method="_on_yarts_landed"]
+[connection signal="player_death" from="." to="statemachine/cut_scene" method="_on_yarts_player_death"]
+[connection signal="animation_finished" from="AnimatedSprite3D" to="statemachine/cut_scene" method="_on_animated_sprite_3d_animation_finished"]
+[connection signal="timeout" from="statemachine/jump/jump_timer" to="statemachine/jump" method="_on_jump_timer_timeout"]
+[connection signal="timeout" from="statemachine/fall/coyote_timer" to="statemachine/fall" method="_on_coyote_timer_timeout"]
+[connection signal="timeout" from="statemachine/fall/jump_buffer_timer" to="statemachine/fall" method="_on_jump_buffer_timer_timeout"]
+[connection signal="timeout" from="statemachine/climb_jump/Timer" to="statemachine/climb_jump" method="_on_timer_timeout"]
+[connection signal="timeout" from="statemachine/dive/Timer" to="statemachine/dive" method="_on_timer_timeout"]
+[connection signal="pressed" from="debug/VBoxContainer/unlock_all" to="." method="_on_unlock_all_pressed"]
+[connection signal="pressed" from="debug/CheckButton" to="." method="_on_check_button_pressed"]

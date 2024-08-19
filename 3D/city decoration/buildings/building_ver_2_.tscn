@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxyxeda6xd8j3"]
+
+[ext_resource type="PackedScene" uid="uid://bsquvhsmdi0dw" path="res://3D/city decoration/buildings/peter file.glb" id="1_7x3qp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_14r4b"]
+size = Vector3(19.5, 40, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5atj5"]
+size = Vector3(32, 1, 26)
+
+[node name="building_ver_2_" instance=ExtResource("1_7x3qp")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_14r4b")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Cube/StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.8852, 0)
+shape = SubResource("BoxShape3D_5atj5")
