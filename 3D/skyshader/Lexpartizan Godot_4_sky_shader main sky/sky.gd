@@ -194,15 +194,17 @@ func _process(delta:float):
 
 func _ready():
 	set_process(false);
+	
+	set_time_of_day(0.5)
 
-var time: float = 0
+#var time: float = 0
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
-	time += 0.01 * delta
-	set_time_of_day(time)
-	if time >= 1:
-		time = 0
+	#time += 0.01 * delta
+	#set_time_of_day(time)
+	#if time >= 1:
+		#time = 0
 
 #func _input(event):
 	#if event.is_action_pressed("ui_accept"):

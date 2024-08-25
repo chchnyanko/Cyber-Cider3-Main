@@ -4,7 +4,7 @@ extends "res://3D/player/statemachine/state.gd"
 @onready var coyote_timer: Timer = $coyote_timer
 @onready var jump_buffer_timer: Timer = $jump_buffer_timer
 
-const speed: float = 10
+const speed: float = 12
 const coyote_time: float = 0.2
 const jump_buffer_time: float = 0.1
 

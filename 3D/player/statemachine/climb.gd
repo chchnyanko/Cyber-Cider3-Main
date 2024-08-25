@@ -5,7 +5,7 @@ func update(delta):
 	player_rotation()
 	climb()
 	
-	if !player.is_on_wall() or Input.is_action_just_pressed("crawl") or player.is_on_floor():
+	if !player.is_on_wall() or Input.is_action_just_pressed("crawl") or player.is_on_floor() or stamina > 100:
 		return states.idle
 	if Input.is_action_just_pressed("jump"):
 		return states.climb_jump

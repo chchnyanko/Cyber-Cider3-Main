@@ -2,7 +2,7 @@ extends "res://3D/player/statemachine/state.gd"
 
 
 @onready var timer: Timer = $Timer
-var speed: float = 50
+var speed: float = 60
 var diving: bool = false
 var divable: bool = false
 

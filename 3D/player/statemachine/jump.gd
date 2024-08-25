@@ -3,8 +3,8 @@ extends "res://3D/player/statemachine/state.gd"
 @onready var jump_timer: Timer = $jump_timer
 
 const jump_time: float = 0.2
-const jump_speed: float = 20
-const speed: float = 10
+const jump_speed: float = 30
+const speed: float = 13
 
 var jumping: bool = false
 

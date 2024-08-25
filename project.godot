@@ -17,9 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-cursor="*res://autoloads/ui_cursor.gd"
 data="*res://autoloads/save.gd"
 unlocks="*res://autoloads/unlocks.gd"
+settings="*res://autoloads/settings.gd"
 
 [display]
 
@@ -28,7 +28,7 @@ window/size/viewport_height=1080
 
 [global_group]
 
-ui_button="buttons used by the ui cursor"
+ui_button="The buttons and labels that will move with the ui cursor"
 
 [input]
 

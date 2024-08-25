@@ -4,6 +4,7 @@ class_name yarts
 
 signal player_death
 signal landed
+signal camera_move(hi: bool)
 
 ## Stuff for state machine
 @onready var statemachine: Node = $statemachine
@@ -13,7 +14,8 @@ var previous_state: state
 ## Other variables
 @export var camera_3d: camera
 
-@onready var sprite: AnimatedSprite3D = $AnimatedSprite3D
+@onready var sprite: AnimatedSprite2D = $SubViewport/AnimatedSprite2D
+@onready var sprite3d: MeshInstance3D = $sprite
 @onready var shadow_ray: RayCast3D = $shadow_ray
 @onready var shadow: Decal = $shadow
 @onready var ceiling_checker: ShapeCast3D = $ceiling_checker
@@ -30,6 +32,10 @@ func _ready() -> void:
 	if data.checkpoint_name != "none":
 		position = data.checkpoint_pos
 		position.y += 0.5 
+	sprite.material.set_shader_parameter("colour_offset", settings.get("player_visibility"))
+	
+	camera_move.connect(camera_3d.update_moving)
+
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
@@ -52,27 +58,37 @@ func _physics_process(delta: float) -> void:
 		onfloor = true
 		landed.emit()
 	
+	if position.y < 1:
+		death()
 	if position.y < -100:
 		death(true)
 	
+	
 	## DEBUG PLEASE DELETE LATER
-	$debug/VBoxContainer/fps.text = str("Current FPS: ", Engine.get_frames_per_second())
-	$debug/VBoxContainer/position.text = str("Current Position: ", position)
-	$debug/VBoxContainer/velocity.text = str("Current Velocity: ", velocity)
-	$debug/VBoxContainer/state.text = str("Current State: ", current_state.name)
-	$debug/VBoxContainer/animation.text = str("Current Animation: ", sprite.animation)
-	$debug/VBoxContainer/camera_rotation.text = str("Camera Rotation: ", camera_3d.rotation_degrees)
-	if ceiling_checker.is_colliding():
-		$debug/VBoxContainer/ceiling_checker.text = str("Ceiling Checker Collision: ", ceiling_checker.get_collider(0))
-	else:
-		$debug/VBoxContainer/ceiling_checker.text = str("Ceiling Checker Collision: No collision")
-	if Input.is_key_pressed(KEY_0):
-		death()
+	#$debug/VBoxContainer/fps.text = str("Current FPS: ", Engine.get_frames_per_second())
+	#$debug/VBoxContainer/position.text = str("Current Position: ", position)
+	#$debug/VBoxContainer/velocity.text = str("Current Velocity: ", velocity)
+	#$debug/VBoxContainer/state.text = str("Current State: ", current_state.name)
+	#$debug/VBoxContainer/animation.text = str("Current Animation: ", sprite.animation)
+	#$debug/VBoxContainer/camera_rotation.text = str("Camera Rotation: ", camera_3d.rotation_degrees)
+	#if ceiling_checker.is_colliding():
+		#$debug/VBoxContainer/ceiling_checker.text = str("Ceiling Checker Collision: ", ceiling_checker.get_collider(0))
+	#else:
+		#$debug/VBoxContainer/ceiling_checker.text = str("Ceiling Checker Collision: No collision")
 
 
 func change_state(next_state: state, cutscene: String = "") -> void:
 	if next_state == null:
 		return
+	if next_state.name in inst_to_dict(unlocks):
+		if !unlocks.get(next_state.name):
+			return
+	
+	if cutscene != "":
+		statemachine.cut_scene.cutscene_name = cutscene
+	else:
+		statemachine.cut_scene.cutscene_name = ""
+	
 	previous_state = current_state
 	previous_state.exit_state()
 	
@@ -98,13 +114,13 @@ func death(instant: bool = false) -> void:
 
 
 ## DEBUG PLEASE DELETE LATER
-func _on_check_button_pressed() -> void:
-	$debug/VBoxContainer.visible = !$debug/VBoxContainer.visible
-	$debug/CheckButton.release_focus()
-
-
-func _on_unlock_all_pressed() -> void:
-	$debug/VBoxContainer/unlock_all.hide()
-	for i in inst_to_dict(unlocks):
-		if i != "@subpath" and i != "@path":
-			unlocks.set(i, true)
+#func _on_check_button_pressed() -> void:
+	#$debug/VBoxContainer.visible = !$debug/VBoxContainer.visible
+	#$debug/CheckButton.release_focus()
+#
+#
+#func _on_unlock_all_pressed() -> void:
+	#$debug/VBoxContainer/unlock_all.hide()
+	#for i in inst_to_dict(unlocks):
+		#if i != "@subpath" and i != "@path":
+			#unlocks.set(i, true)

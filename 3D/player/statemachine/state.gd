@@ -12,6 +12,8 @@ var states: Node
 var player: yarts
 var ceiling_checker: ShapeCast3D
 var wall_normal: Vector3
+var stamina_bar: TextureProgressBar
+var stamina: float
 
 var gravity: float
 
@@ -33,13 +35,13 @@ func player_gravity(delta: float) -> void:
 		player.velocity.y -= gravity * delta
 
 func player_movement(speed: float) -> void:
-	var vely: float = player.velocity.y
-	player.velocity = player.camera_3d.transform.basis.x * player.input_dir.x + player.camera_3d.transform.basis.z * player.input_dir.y
-	player.velocity *= speed
-	player.velocity.y = vely
+	var vector = player.camera_3d.transform.basis.x * player.input_dir.x + player.camera_3d.transform.basis.z * player.input_dir.y
+	var normalised = Vector2(vector.x, vector.z).normalized()
+	player.velocity.x = normalised.x * speed
+	player.velocity.z = normalised.y * speed
 
 func player_rotation() -> void:
-	player.sprite.rotation.y = player.camera_3d.rotation.y
+	player.sprite3d.rotation.y = player.camera_3d.rotation.y
 
 func check_ceiling() -> bool:
 	ceiling_checker.force_shapecast_update()

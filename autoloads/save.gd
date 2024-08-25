@@ -1,5 +1,7 @@
 extends Node
 
+var tutorial: bool = false #stores if the player has seen the tutorial in the past
+
 var checkpoint_pos: Vector3 = Vector3.ZERO
 var checkpoint_name: String = "none"
 
@@ -28,13 +30,36 @@ func load_game():
 		var json = JSON.new()
 		var parse_result = json.parse(json_string)
 		save_data.append(json.get_data())
-	for i in save_data[0].keys():
-		unlocks.set(i, save_data[0][i])
-	for i in save_data[1].keys():
-		set(i, save_data[1][i])
-		if i == "checkpoint_pos":
-			save_data[1][i] = save_data[1][i].replace("(", "").replace(")", "")
-			checkpoint_pos.x = float(save_data[1][i].get_slice(",", 0))
-			checkpoint_pos.y = float(save_data[1][i].get_slice(",", 1))
-			checkpoint_pos.z = float(save_data[1][i].get_slice(",", 2))
+	if len(save_data) > 2:
+		for i in save_data[0].keys():
+			unlocks.set(i, save_data[0][i])
+		for i in save_data[1].keys():
+			set(i, save_data[1][i])
+			if i == "checkpoint_pos":
+				save_data[1][i] = save_data[1][i].replace("(", "").replace(")", "")
+				checkpoint_pos.x = float(save_data[1][i].get_slice(",", 0))
+				checkpoint_pos.y = float(save_data[1][i].get_slice(",", 1))
+				checkpoint_pos.z = float(save_data[1][i].get_slice(",", 2))
 	save_file.close()
+
+func save_settings():
+	var setting = FileAccess.open("user://settings.data", FileAccess.WRITE)
+	var settings_data = inst_to_dict(settings)
+	settings_data.erase("@subpath")
+	settings_data.erase("@path")
+	var save_settings_data = JSON.stringify(settings_data)
+	setting.store_line(save_settings_data)
+	setting.close()
+
+func load_settings():
+	var setting = FileAccess.open("user://settings.data", FileAccess.READ)
+	var setting_data: Array
+	while setting.get_position() < setting.get_length():
+		var json_string = setting.get_line()
+		var json = JSON.new()
+		var parse_result = json.parse(json_string)
+		setting_data.append(json.get_data())
+	if setting_data != []:
+		for i in setting_data[0].keys():
+			settings.set(i, setting_data[0][i])
+	setting.close()

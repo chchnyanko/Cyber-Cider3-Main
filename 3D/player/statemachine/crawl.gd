@@ -3,7 +3,7 @@ extends "res://3D/player/statemachine/state.gd"
 
 @onready var collision: CollisionShape3D = $"../../CollisionShape3D"
 
-const speed: float = 8
+const speed: float = 10
 
 
 func update(delta):

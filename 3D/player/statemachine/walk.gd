@@ -1,7 +1,7 @@
 extends "res://3D/player/statemachine/state.gd"
 
 
-const speed: float = 10
+const speed: float = 15
 
 
 func update(delta):

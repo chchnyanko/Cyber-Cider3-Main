@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://d1hcf3nwyb30p"]
+[gd_scene load_steps=23 format=3 uid="uid://d1hcf3nwyb30p"]
 
 [ext_resource type="Script" path="res://3D/player/player.gd" id="1_yem3m"]
 [ext_resource type="SpriteFrames" uid="uid://c4g3utpl47nf1" path="res://3D/player/sprites/animation.tres" id="2_5iw2l"]
+[ext_resource type="Shader" path="res://3D/player/player.gdshader" id="2_pppcv"]
 [ext_resource type="Script" path="res://3D/player/statemachine/statemachine.gd" id="3_7d0tt"]
 [ext_resource type="Texture2D" uid="uid://k2mv1x5gqpx" path="res://3D/player/sprites/shadow.png" id="3_yqjpk"]
 [ext_resource type="Script" path="res://3D/player/statemachine/idle.gd" id="4_2vd8p"]
@@ -14,8 +15,24 @@
 [ext_resource type="Script" path="res://3D/player/statemachine/crawl.gd" id="11_ulmyl"]
 [ext_resource type="Script" path="res://3D/player/statemachine/cut_scene.gd" id="12_3oceu"]
 
+[sub_resource type="QuadMesh" id="QuadMesh_jdgd2"]
+lightmap_size_hint = Vector2i(12, 12)
+size = Vector2(2, 2)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_4vbjo"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qgput"]
+resource_local_to_scene = true
+transparency = 1
+albedo_texture = SubResource("ViewportTexture_4vbjo")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t0pi5"]
+shader = ExtResource("2_pppcv")
+shader_parameter/colour_offset = 0.8
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_qckqf"]
-size = Vector3(1, 1.1, 1)
+size = Vector3(1, 1.6, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ffb76"]
 
@@ -30,11 +47,19 @@ events = [SubResource("InputEventKey_cwxlf"), null]
 [node name="Yarts" type="CharacterBody3D"]
 script = ExtResource("1_yem3m")
 
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+[node name="sprite" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_jdgd2")
+surface_material_override/0 = SubResource("StandardMaterial3D_qgput")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(128, 128)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewport"]
+material = SubResource("ShaderMaterial_t0pi5")
+position = Vector2(64, 64)
 sprite_frames = ExtResource("2_5iw2l")
-animation = &"wakeup"
-frame = 13
-frame_progress = 1.0
+animation = &"idle"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0437012, 0)
@@ -100,6 +125,34 @@ script = ExtResource("11_ulmyl")
 [node name="cut_scene" type="Node" parent="statemachine"]
 script = ExtResource("12_3oceu")
 
+[node name="Timer" type="Timer" parent="statemachine/cut_scene"]
+one_shot = true
+
+[node name="tutorial" type="Label3D" parent="statemachine/cut_scene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+visible = false
+text = "Move with WASD or arrowkeys
+Jump with space bar
+Move camera using the mouse
+
+Go and find the secret on top of the tower"
+font_size = 100
+
+[node name="end" type="Label3D" parent="statemachine/cut_scene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6788, 0)
+visible = false
+text = "That is the end of the game at the moment
+I hope you enjoyed the game
+It would help us a lot if you could give us some
+feedback on this game 
+Thanks for playing :)"
+font_size = 100
+
+[node name="unlock" type="Label3D" parent="statemachine/cut_scene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6788, 0)
+visible = false
+font_size = 100
+
 [node name="debug" type="CanvasLayer" parent="."]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="debug"]
@@ -142,6 +195,7 @@ layout_mode = 2
 text = "Unlock All Abilities"
 
 [node name="CheckButton" type="CheckButton" parent="debug"]
+visible = false
 offset_right = 44.0
 offset_bottom = 24.0
 shortcut = SubResource("Shortcut_1hbyg")
@@ -149,11 +203,12 @@ text = "show debug"
 
 [connection signal="landed" from="." to="statemachine/dive" method="_on_yarts_landed"]
 [connection signal="player_death" from="." to="statemachine/cut_scene" method="_on_yarts_player_death"]
-[connection signal="animation_finished" from="AnimatedSprite3D" to="statemachine/cut_scene" method="_on_animated_sprite_3d_animation_finished"]
+[connection signal="animation_finished" from="SubViewport/AnimatedSprite2D" to="statemachine/cut_scene" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="statemachine/jump/jump_timer" to="statemachine/jump" method="_on_jump_timer_timeout"]
 [connection signal="timeout" from="statemachine/fall/coyote_timer" to="statemachine/fall" method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="statemachine/fall/jump_buffer_timer" to="statemachine/fall" method="_on_jump_buffer_timer_timeout"]
 [connection signal="timeout" from="statemachine/climb_jump/Timer" to="statemachine/climb_jump" method="_on_timer_timeout"]
 [connection signal="timeout" from="statemachine/dive/Timer" to="statemachine/dive" method="_on_timer_timeout"]
+[connection signal="timeout" from="statemachine/cut_scene/Timer" to="statemachine/cut_scene" method="_on_timer_timeout"]
 [connection signal="pressed" from="debug/VBoxContainer/unlock_all" to="." method="_on_unlock_all_pressed"]
 [connection signal="pressed" from="debug/CheckButton" to="." method="_on_check_button_pressed"]
