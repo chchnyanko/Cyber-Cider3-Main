@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://2265rxil5kpt"]
+
+[ext_resource type="Script" path="res://minigames/card_swipe/card_swipe.gd" id="1_lrkus"]
+[ext_resource type="Texture2D" uid="uid://k2mv1x5gqpx" path="res://3D/player/sprites/shadow.png" id="1_uqrdi"]
+[ext_resource type="Texture2D" uid="uid://l3gc3khavbqe" path="res://minigames/card_swipe/card swiper.png" id="3_hprhm"]
+[ext_resource type="Texture2D" uid="uid://drh87wg02cfoi" path="res://minigames/card_swipe/card.png" id="4_i7ix3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cit2c"]
+size = Vector2(1104, 556)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hocxd"]
+size = Vector2(468, 396)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jofby"]
+size = Vector2(472, 396)
+
+[node name="card_swipe" type="Node2D"]
+script = ExtResource("1_lrkus")
+max_time = 10.0
+position_smoothing = 0.5
+min_card_swipe_time = 0.7
+random_range_card_swipe_time = 0.5
+range_card_swipe_time = 0.3
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+value = 100.0
+allow_lesser = true
+fill_mode = 5
+texture_progress = ExtResource("1_uqrdi")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="card_swipe_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="card" type="Area2D" parent="."]
+position = Vector2(889, 327)
+scale = Vector2(0.5, 0.5)
+
+[node name="Card" type="Sprite2D" parent="card"]
+texture = ExtResource("4_i7ix3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="card"]
+shape = SubResource("RectangleShape2D_cit2c")
+
+[node name="CardSwiper" type="Sprite2D" parent="."]
+position = Vector2(860, 831)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_hprhm")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="CardSwiper"]
+position = Vector2(-670, -276)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardSwiper/Area2D"]
+shape = SubResource("RectangleShape2D_hocxd")
+
+[node name="Area2D2" type="Area2D" parent="CardSwiper"]
+position = Vector2(652, 282)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardSwiper/Area2D2"]
+shape = SubResource("RectangleShape2D_jofby")
+
+[node name="indicator" type="ColorRect" parent="."]
+offset_left = 1003.0
+offset_top = 908.0
+offset_right = 1248.0
+offset_bottom = 1024.0
+color = Color(1, 0, 0, 0)
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="input_event" from="card" to="." method="_on_card_input_event"]
+[connection signal="area_entered" from="CardSwiper/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="CardSwiper/Area2D2" to="." method="_on_area_2d_2_area_entered"]

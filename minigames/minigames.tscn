@@ -1,9 +1,228 @@
-[gd_scene format=3 uid="uid://bud8mu8q46vrv"]
+[gd_scene load_steps=10 format=3 uid="uid://bud8mu8q46vrv"]
 
-[node name="minigames" type="Node2D"]
+[ext_resource type="Shader" path="res://minigames/test.gdshader" id="1_b0r3u"]
+[ext_resource type="Script" path="res://minigames/minigames.gd" id="1_d5p38"]
+[ext_resource type="Script" path="res://ui menu/ui_cursor.gd" id="2_24adr"]
+[ext_resource type="Texture2D" uid="uid://oqsat32k5pyj" path="res://ui menu/cursor_bottle.png" id="3_cawfg"]
+[ext_resource type="Texture2D" uid="uid://bs0imicl4f530" path="res://ui menu/cursor_liquid.png" id="4_ngddj"]
 
-[node name="Label" type="Label" parent="."]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tnv7r"]
+shader = ExtResource("1_b0r3u")
+
+[sub_resource type="Animation" id="Animation_x1qbc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cursor:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [30.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cursor:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_sixao"]
+resource_name = "pour_cider"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cursor:value")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.133333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [30.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cursor:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.0944]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wfivf"]
+_data = {
+"RESET": SubResource("Animation_x1qbc"),
+"pour_cider": SubResource("Animation_sixao")
+}
+
+[node name="minigames" type="Control"]
+material = SubResource("ShaderMaterial_tnv7r")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d5p38")
+
+[node name="Button" type="Button" parent="." groups=["button", "ui_button"]]
+use_parent_material = true
+layout_mode = 2
+offset_left = 320.5
+offset_top = 184.0
+offset_right = 699.5
+offset_bottom = 261.0
+theme_override_font_sizes/font_size = 50
+text = "Find the Ball"
+
+[node name="Button2" type="Button" parent="." groups=["button", "ui_button"]]
+use_parent_material = true
+layout_mode = 2
+offset_left = 799.5
+offset_top = 184.0
+offset_right = 1144.5
+offset_bottom = 261.0
+theme_override_font_sizes/font_size = 50
+text = "Card swipe"
+
+[node name="Button3" type="Button" parent="." groups=["button", "ui_button"]]
+use_parent_material = true
+layout_mode = 2
+offset_left = 1244.5
+offset_top = 184.0
+offset_right = 1599.5
+offset_bottom = 261.0
+theme_override_font_sizes/font_size = 50
+text = "Platformer"
+
+[node name="Button4" type="Button" parent="." groups=["button", "ui_button"]]
+use_parent_material = true
+layout_mode = 2
+offset_left = 320.5
+offset_top = 361.0
+offset_right = 699.5
+offset_bottom = 438.0
+theme_override_font_sizes/font_size = 50
+text = "we need new idea"
+
+[node name="Button5" type="Button" parent="." groups=["button", "ui_button"]]
+use_parent_material = true
+layout_mode = 2
+offset_left = 799.5
+offset_top = 361.0
+offset_right = 1144.5
+offset_bottom = 438.0
+theme_override_font_sizes/font_size = 50
+text = "Memory"
+
+[node name="Button6" type="Button" parent="." groups=["button", "ui_button"]]
+use_parent_material = true
+layout_mode = 2
+offset_left = 1244.5
+offset_top = 361.0
+offset_right = 1599.5
+offset_bottom = 438.0
+theme_override_font_sizes/font_size = 50
+text = "Simon says"
+
+[node name="Button7" type="Button" parent="." groups=["button", "ui_button"]]
+use_parent_material = true
+layout_mode = 2
+offset_left = 320.5
+offset_top = 642.0
+offset_right = 699.5
+offset_bottom = 719.0
+theme_override_font_sizes/font_size = 50
+text = "Boulder escape"
+
+[node name="Button8" type="Button" parent="." groups=["button", "ui_button"]]
+use_parent_material = true
+layout_mode = 2
+offset_left = 799.5
+offset_top = 642.0
+offset_right = 1144.5
+offset_bottom = 719.0
+theme_override_font_sizes/font_size = 50
+text = "Match a Block"
+
+[node name="Button9" type="Button" parent="." groups=["button", "ui_button"]]
+use_parent_material = true
+layout_mode = 2
+offset_left = 1244.5
+offset_top = 642.0
+offset_right = 1599.5
+offset_bottom = 719.0
+theme_override_font_sizes/font_size = 50
+text = "Potion Making"
+
+[node name="Button10" type="Button" parent="." groups=["button", "ui_button"]]
+use_parent_material = true
+layout_mode = 2
+offset_left = 320.5
+offset_top = 819.0
+offset_right = 699.5
+offset_bottom = 896.0
+theme_override_font_sizes/font_size = 50
+text = "Shootout"
+
+[node name="Button11" type="Button" parent="." groups=["button", "ui_button"]]
+use_parent_material = true
+layout_mode = 2
+offset_left = 799.5
+offset_top = 819.0
+offset_right = 1144.5
+offset_bottom = 896.0
+theme_override_font_sizes/font_size = 50
+text = "Memory 2"
+
+[node name="Button12" type="Button" parent="." groups=["button", "ui_button"]]
+use_parent_material = true
+layout_mode = 2
+offset_left = 1244.5
+offset_top = 819.0
+offset_right = 1599.5
+offset_bottom = 896.0
+theme_override_font_sizes/font_size = 50
+text = "Drop the Ball"
+
+[node name="ui_cursor" type="Node" parent="." node_paths=PackedStringArray("cursor", "line", "first_focus", "animation")]
+script = ExtResource("2_24adr")
+cursor = NodePath("../cursor")
+line = NodePath("../Line2D")
+first_focus = NodePath("../Button")
+animation = NodePath("../cursor_animation")
+
+[node name="cursor" type="TextureProgressBar" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
 offset_right = 40.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 200
-text = "minigames"
+offset_bottom = 40.0
+scale = Vector2(5, 5)
+pivot_offset = Vector2(19.84, 25.416)
+max_value = 30.0
+value = 30.0
+fill_mode = 2
+texture_over = ExtResource("3_cawfg")
+texture_progress = ExtResource("4_ngddj")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0)
+
+[node name="cursor_animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wfivf")
+}

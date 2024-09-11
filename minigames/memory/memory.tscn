@@ -1,0 +1,112 @@
+[gd_scene load_steps=5 format=3 uid="uid://buq7x6pkw7crl"]
+
+[ext_resource type="Script" path="res://minigames/memory/memory.gd" id="1_mkepb"]
+[ext_resource type="Texture2D" uid="uid://k2mv1x5gqpx" path="res://3D/player/sprites/shadow.png" id="2_j4lrm"]
+[ext_resource type="Texture2D" uid="uid://cb6677unne3ws" path="res://icon.svg" id="3_0kcyn"]
+[ext_resource type="Texture2D" uid="uid://oqsat32k5pyj" path="res://ui menu/cursor_bottle.png" id="4_o2cmp"]
+
+[node name="memory" type="Node2D"]
+script = ExtResource("1_mkepb")
+show_time = 0.5
+max_buttons = 10
+
+[node name="button" type="Node" parent="."]
+
+[node name="TextureButton" type="TextureButton" parent="button"]
+offset_left = 738.0
+offset_top = 318.0
+offset_right = 866.0
+offset_bottom = 446.0
+texture_normal = ExtResource("2_j4lrm")
+texture_pressed = ExtResource("3_0kcyn")
+texture_disabled = ExtResource("4_o2cmp")
+texture_focused = ExtResource("3_0kcyn")
+
+[node name="TextureButton2" type="TextureButton" parent="button"]
+offset_left = 896.0
+offset_top = 318.0
+offset_right = 1024.0
+offset_bottom = 446.0
+texture_normal = ExtResource("2_j4lrm")
+texture_pressed = ExtResource("3_0kcyn")
+texture_disabled = ExtResource("4_o2cmp")
+texture_focused = ExtResource("3_0kcyn")
+
+[node name="TextureButton3" type="TextureButton" parent="button"]
+offset_left = 1054.0
+offset_top = 318.0
+offset_right = 1182.0
+offset_bottom = 446.0
+texture_normal = ExtResource("2_j4lrm")
+texture_pressed = ExtResource("3_0kcyn")
+texture_disabled = ExtResource("4_o2cmp")
+texture_focused = ExtResource("3_0kcyn")
+
+[node name="TextureButton4" type="TextureButton" parent="button"]
+offset_left = 738.0
+offset_top = 476.0
+offset_right = 866.0
+offset_bottom = 604.0
+texture_normal = ExtResource("2_j4lrm")
+texture_pressed = ExtResource("3_0kcyn")
+texture_disabled = ExtResource("4_o2cmp")
+texture_focused = ExtResource("3_0kcyn")
+
+[node name="TextureButton5" type="TextureButton" parent="button"]
+offset_left = 896.0
+offset_top = 476.0
+offset_right = 1024.0
+offset_bottom = 604.0
+texture_normal = ExtResource("2_j4lrm")
+texture_pressed = ExtResource("3_0kcyn")
+texture_disabled = ExtResource("4_o2cmp")
+texture_focused = ExtResource("3_0kcyn")
+
+[node name="TextureButton6" type="TextureButton" parent="button"]
+offset_left = 1054.0
+offset_top = 476.0
+offset_right = 1182.0
+offset_bottom = 604.0
+texture_normal = ExtResource("2_j4lrm")
+texture_pressed = ExtResource("3_0kcyn")
+texture_disabled = ExtResource("4_o2cmp")
+texture_focused = ExtResource("3_0kcyn")
+
+[node name="TextureButton7" type="TextureButton" parent="button"]
+offset_left = 738.0
+offset_top = 634.0
+offset_right = 866.0
+offset_bottom = 762.0
+texture_normal = ExtResource("2_j4lrm")
+texture_pressed = ExtResource("3_0kcyn")
+texture_disabled = ExtResource("4_o2cmp")
+texture_focused = ExtResource("3_0kcyn")
+
+[node name="TextureButton8" type="TextureButton" parent="button"]
+offset_left = 896.0
+offset_top = 634.0
+offset_right = 1024.0
+offset_bottom = 762.0
+texture_normal = ExtResource("2_j4lrm")
+texture_pressed = ExtResource("3_0kcyn")
+texture_disabled = ExtResource("4_o2cmp")
+texture_focused = ExtResource("3_0kcyn")
+
+[node name="TextureButton9" type="TextureButton" parent="button"]
+offset_left = 1054.0
+offset_top = 634.0
+offset_right = 1182.0
+offset_bottom = 762.0
+texture_normal = ExtResource("2_j4lrm")
+texture_pressed = ExtResource("3_0kcyn")
+texture_disabled = ExtResource("4_o2cmp")
+texture_focused = ExtResource("3_0kcyn")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

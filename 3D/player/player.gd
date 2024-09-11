@@ -65,16 +65,17 @@ func _physics_process(delta: float) -> void:
 	
 	
 	## DEBUG PLEASE DELETE LATER
-	#$debug/VBoxContainer/fps.text = str("Current FPS: ", Engine.get_frames_per_second())
-	#$debug/VBoxContainer/position.text = str("Current Position: ", position)
-	#$debug/VBoxContainer/velocity.text = str("Current Velocity: ", velocity)
-	#$debug/VBoxContainer/state.text = str("Current State: ", current_state.name)
-	#$debug/VBoxContainer/animation.text = str("Current Animation: ", sprite.animation)
-	#$debug/VBoxContainer/camera_rotation.text = str("Camera Rotation: ", camera_3d.rotation_degrees)
-	#if ceiling_checker.is_colliding():
-		#$debug/VBoxContainer/ceiling_checker.text = str("Ceiling Checker Collision: ", ceiling_checker.get_collider(0))
-	#else:
-		#$debug/VBoxContainer/ceiling_checker.text = str("Ceiling Checker Collision: No collision")
+	$debug/VBoxContainer/fps.text = str("Current FPS: ", Engine.get_frames_per_second())
+	$debug/VBoxContainer/position.text = str("Current Position: ", position)
+	$debug/VBoxContainer/velocity.text = str("Current Velocity: ", velocity)
+	$debug/VBoxContainer/state.text = str("Current State: ", current_state.name)
+	$debug/VBoxContainer/animation.text = str("Current Animation: ", sprite.animation)
+	$debug/VBoxContainer/camera_rotation.text = str("Camera Rotation: ", camera_3d.rotation_degrees)
+	if ceiling_checker.is_colliding():
+		$debug/VBoxContainer/ceiling_checker.text = str("Ceiling Checker Collision: ", ceiling_checker.get_collider(0))
+	else:
+		$debug/VBoxContainer/ceiling_checker.text = str("Ceiling Checker Collision: No collision")
+	$debug/VBoxContainer/checkpoint.text = str("Current Checkpoint: '", data.checkpoint_name, "' at position: ", data.checkpoint_pos)
 
 
 func change_state(next_state: state, cutscene: String = "") -> void:
@@ -114,13 +115,13 @@ func death(instant: bool = false) -> void:
 
 
 ## DEBUG PLEASE DELETE LATER
-#func _on_check_button_pressed() -> void:
-	#$debug/VBoxContainer.visible = !$debug/VBoxContainer.visible
-	#$debug/CheckButton.release_focus()
-#
-#
-#func _on_unlock_all_pressed() -> void:
-	#$debug/VBoxContainer/unlock_all.hide()
-	#for i in inst_to_dict(unlocks):
-		#if i != "@subpath" and i != "@path":
-			#unlocks.set(i, true)
+func _on_check_button_pressed() -> void:
+	$debug/VBoxContainer.visible = !$debug/VBoxContainer.visible
+	$debug/CheckButton.release_focus()
+
+
+func _on_unlock_all_pressed() -> void:
+	$debug/VBoxContainer/unlock_all.hide()
+	for i in inst_to_dict(unlocks):
+		if i != "@subpath" and i != "@path":
+			unlocks.set(i, true)

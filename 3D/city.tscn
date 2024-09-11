@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://daxmno1j8b1bm"]
+[gd_scene load_steps=13 format=3 uid="uid://daxmno1j8b1bm"]
 
 [ext_resource type="PackedScene" uid="uid://d1hcf3nwyb30p" path="res://3D/player/player.tscn" id="1_3f1bf"]
 [ext_resource type="Script" path="res://3D/city.gd" id="1_cj0v4"]
@@ -10,11 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://dfh4wx1b2qn0p" path="res://3D/city decoration/buildings/building_ver_1_.tscn" id="8_3gyjt"]
 [ext_resource type="PackedScene" uid="uid://gewnt63652lm" path="res://3D/city decoration/buildings/building_ver_5_.tscn" id="9_p5ow8"]
 [ext_resource type="PackedScene" uid="uid://cpu1ag6qeyqos" path="res://3D/city decoration/buildings/building_ver_3_.tscn" id="10_44qh1"]
-[ext_resource type="PackedScene" uid="uid://copcm83egyebj" path="res://3D/checkpoint/checkpoint.tscn" id="11_0oc0c"]
-[ext_resource type="PackedScene" uid="uid://buybdi8u8bftb" path="res://3D/placeholder/unlock.tscn" id="12_ujseh"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_1qyi3"]
-size = Vector3(11.647, 5.69824, 12.6353)
+[ext_resource type="PackedScene" uid="uid://copcm83egyebj" path="res://3D/city decoration/checkpoint/checkpoint.tscn" id="11_0oc0c"]
+[ext_resource type="Texture2D" uid="uid://cptlb53dte4ls" path="res://3D/city decoration/grafiti/we_continue_grafiti.png" id="12_6q3ko"]
 
 [node name="City" type="Node3D"]
 script = ExtResource("1_cj0v4")
@@ -347,52 +344,39 @@ transform = Transform3D(0.69, 0, 0, 0, 0.69, 0, 0, 0, 0.69, 136.035, -0.13633, -
 [node name="building_ver_5_16" parent="." instance=ExtResource("9_p5ow8")]
 transform = Transform3D(0.69, 0, 0, 0, 0.69, 0, 0, 0, 0.69, 63.5836, -0.13633, 120.253)
 
-[node name="top_of_tower" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101.67, 174.465, 2.31563)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="top_of_tower"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.969482, 2.34912, 3.33183)
-shape = SubResource("BoxShape3D_1qyi3")
-
 [node name="checkpoint" parent="." instance=ExtResource("11_0oc0c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.67506, 57.606, 61.3244)
-title = "city centre"
+script = null
 
 [node name="checkpoint2" parent="." instance=ExtResource("11_0oc0c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.7775, 38.7574, 8.03028)
-title = "tower low deck"
+script = null
 
 [node name="checkpoint3" parent="." instance=ExtResource("11_0oc0c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.8705, 47.6473, -30.3326)
-title = "the beginning"
+script = null
 
 [node name="checkpoint4" parent="." instance=ExtResource("11_0oc0c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -112.811, 42.5649, 59.1268)
-title = "west roof top"
+script = null
 
 [node name="checkpoint5" parent="." instance=ExtResource("11_0oc0c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.1789, 57.335, 134.06)
-title = "southern sunset"
+script = null
 
 [node name="checkpoint6" parent="." instance=ExtResource("11_0oc0c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 144.883, 41.2637, 57.4777)
-title = "east highways"
+script = null
 
 [node name="checkpoint7" parent="." instance=ExtResource("11_0oc0c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.6343, 42.4163, -59.855)
-title = "northern wall street"
+script = null
 
-[node name="unlock" parent="." instance=ExtResource("12_ujseh")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -108.045, 28.2626, 141.088)
-move = "dive"
-
-[node name="unlock2" parent="." instance=ExtResource("12_ujseh")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 172.653, 60.6081, 73.9338)
-move = "crawl"
-
-[node name="unlock3" parent="." instance=ExtResource("12_ujseh")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 205.136, 58.7522, -34.956)
-move = "climb"
+[node name="wecontinue" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.258195, -0.966093, 0, 0.966093, 0.258195, 6.29888, 17.0566, 71.8604)
+size = Vector3(10, 10, 10)
+texture_albedo = ExtResource("12_6q3ko")
+upper_fade = 2.5895e-05
+lower_fade = 1e-05
 
 [connection signal="camera_move" from="Yarts" to="camera" method="_on_yarts_camera_move"]
-[connection signal="body_entered" from="top_of_tower" to="." method="_on_top_of_tower_body_entered"]

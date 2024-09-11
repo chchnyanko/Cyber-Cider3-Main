@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cemd2i3tqrv03"]
+
+[ext_resource type="Script" path="res://minigames/pinball/pinball.gd" id="1_aa2ek"]
+
+[node name="pinball" type="Node2D"]
+script = ExtResource("1_aa2ek")

@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtb5akehwbkjo"]
+
+[ext_resource type="Script" path="res://minigames/simon_says/simon_says.gd" id="1_conmr"]
+
+[node name="simon_says" type="Node2D"]
+script = ExtResource("1_conmr")
+win_amount = 10
+time = 0.1
+reaction_time = 1.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 642.0
+offset_top = 429.0
+offset_right = 1100.0
+offset_bottom = 498.0
+theme_override_font_sizes/font_size = 50
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Label2" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Label3" type="Label" parent="."]
+offset_top = 43.0
+offset_right = 40.0
+offset_bottom = 66.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

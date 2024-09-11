@@ -19,7 +19,7 @@ func update(delta):
 
 
 func enter_state():
-	player.play_animation("run")
+	player.play_animation("walk")
 
 
 func exit_state():

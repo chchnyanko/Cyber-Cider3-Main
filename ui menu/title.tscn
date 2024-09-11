@@ -1,9 +1,69 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnu6pfxxoq8pi"]
+[gd_scene load_steps=8 format=3 uid="uid://dnu6pfxxoq8pi"]
 
 [ext_resource type="Script" path="res://ui menu/title.gd" id="1_mp4jw"]
 [ext_resource type="Script" path="res://ui menu/ui_cursor.gd" id="1_wwkcn"]
 [ext_resource type="Texture2D" uid="uid://oqsat32k5pyj" path="res://ui menu/cursor_bottle.png" id="2_jdyuy"]
 [ext_resource type="Texture2D" uid="uid://bs0imicl4f530" path="res://ui menu/cursor_liquid.png" id="3_y38ek"]
+
+[sub_resource type="Animation" id="Animation_x1qbc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cursor:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [30.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cursor:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_sixao"]
+resource_name = "pour_cider"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cursor:value")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.133333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [30.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cursor:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.0944]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wfivf"]
+_data = {
+"RESET": SubResource("Animation_x1qbc"),
+"pour_cider": SubResource("Animation_sixao")
+}
 
 [node name="title" type="Node2D"]
 script = ExtResource("1_mp4jw")
@@ -24,7 +84,7 @@ theme_override_font_sizes/font_size = 100
 text = "Play game"
 metadata/scene = "3D/city"
 
-[node name="last_checkpoint" type="Label" parent="."]
+[node name="last_checkpoint" type="Label" parent="." groups=["ui_button"]]
 offset_left = 1327.0
 offset_top = 232.0
 offset_right = 1777.0
@@ -39,7 +99,6 @@ offset_top = 364.0
 offset_right = 1865.0
 offset_bottom = 509.0
 theme_override_font_sizes/font_size = 100
-disabled = true
 text = "Minigames"
 metadata/scene = "minigames/minigames"
 
@@ -70,11 +129,12 @@ theme_override_font_sizes/font_size = 100
 text = "Load"
 metadata/save = false
 
-[node name="ui_cursor" type="Node" parent="." node_paths=PackedStringArray("cursor", "line", "first_focus")]
+[node name="ui_cursor" type="Node" parent="." node_paths=PackedStringArray("cursor", "line", "first_focus", "animation")]
 script = ExtResource("1_wwkcn")
 cursor = NodePath("../cursor")
 line = NodePath("../Line2D")
 first_focus = NodePath("../play_game")
+animation = NodePath("../cursor_animation")
 
 [node name="cursor" type="TextureProgressBar" parent="."]
 custom_minimum_size = Vector2(32, 32)
@@ -84,12 +144,17 @@ scale = Vector2(5, 5)
 pivot_offset = Vector2(19.84, 25.416)
 max_value = 30.0
 value = 30.0
-fill_mode = 3
+fill_mode = 2
 texture_over = ExtResource("2_jdyuy")
 texture_progress = ExtResource("3_y38ek")
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 0, 0)
+
+[node name="cursor_animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wfivf")
+}
 
 [node name="Label" type="Label" parent="."]
 offset_left = 32.0

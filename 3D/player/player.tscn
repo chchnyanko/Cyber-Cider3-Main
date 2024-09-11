@@ -15,9 +15,7 @@
 [ext_resource type="Script" path="res://3D/player/statemachine/crawl.gd" id="11_ulmyl"]
 [ext_resource type="Script" path="res://3D/player/statemachine/cut_scene.gd" id="12_3oceu"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_jdgd2"]
-lightmap_size_hint = Vector2i(12, 12)
-size = Vector2(2, 2)
+[sub_resource type="PlaneMesh" id="PlaneMesh_enxae"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_4vbjo"]
 viewport_path = NodePath("SubViewport")
@@ -29,10 +27,9 @@ albedo_texture = SubResource("ViewportTexture_4vbjo")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t0pi5"]
 shader = ExtResource("2_pppcv")
-shader_parameter/colour_offset = 0.8
+shader_parameter/colour_offset = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qckqf"]
-size = Vector3(1, 1.6, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ffb76"]
 
@@ -48,18 +45,20 @@ events = [SubResource("InputEventKey_cwxlf"), null]
 script = ExtResource("1_yem3m")
 
 [node name="sprite" type="MeshInstance3D" parent="."]
-mesh = SubResource("QuadMesh_jdgd2")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("PlaneMesh_enxae")
 surface_material_override/0 = SubResource("StandardMaterial3D_qgput")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
-size = Vector2i(128, 128)
+size = Vector2i(1084, 777)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewport"]
+texture_filter = 1
 material = SubResource("ShaderMaterial_t0pi5")
-position = Vector2(64, 64)
+position = Vector2(542, 388)
 sprite_frames = ExtResource("2_5iw2l")
-animation = &"idle"
+animation = &"walljump"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0437012, 0)
@@ -138,21 +137,6 @@ Move camera using the mouse
 Go and find the secret on top of the tower"
 font_size = 100
 
-[node name="end" type="Label3D" parent="statemachine/cut_scene"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6788, 0)
-visible = false
-text = "That is the end of the game at the moment
-I hope you enjoyed the game
-It would help us a lot if you could give us some
-feedback on this game 
-Thanks for playing :)"
-font_size = 100
-
-[node name="unlock" type="Label3D" parent="statemachine/cut_scene"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6788, 0)
-visible = false
-font_size = 100
-
 [node name="debug" type="CanvasLayer" parent="."]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="debug"]
@@ -190,12 +174,15 @@ text = "Camera Rotation: "
 layout_mode = 2
 text = "Celing Checker Collision: "
 
+[node name="checkpoint" type="Label" parent="debug/VBoxContainer"]
+layout_mode = 2
+text = "Current Checkpoint: "
+
 [node name="unlock_all" type="Button" parent="debug/VBoxContainer"]
 layout_mode = 2
 text = "Unlock All Abilities"
 
 [node name="CheckButton" type="CheckButton" parent="debug"]
-visible = false
 offset_right = 44.0
 offset_bottom = 24.0
 shortcut = SubResource("Shortcut_1hbyg")

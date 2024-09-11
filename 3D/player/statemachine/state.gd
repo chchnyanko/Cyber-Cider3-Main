@@ -4,7 +4,7 @@ class_name state
 
 ## The states used for the players statemachine
 
-const base_gravity: float = 30
+const base_gravity: float = 35
 const terminal_velocity: float = 80
 const climb_speed: float = 5
 

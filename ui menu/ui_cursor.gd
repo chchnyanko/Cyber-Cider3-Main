@@ -6,6 +6,7 @@ class_name ui_cursor
 @export var line : Line2D ## The line2d that follows the cursor
 @export var first_focus : Button ## The first button that will be focussed when a key is pressed
 @export var pause_screen : Node ## The pause screen for when pausing the game from a button
+@export var animation: AnimationPlayer ## The animation player that will make the cider pour
 
 var positions : Dictionary #stores the default position of each button
 var focus_node : Control #the node that is currently being focused
@@ -64,12 +65,9 @@ func _process(_delta):
 func button_pressed(button):
 	
 	#pouring cider animation
-	for i in 10:
-		await get_tree().process_frame
-		cursor.rotation_degrees += 10
-	for i in 30:
-		await get_tree().process_frame
-		cursor.value -= 1
+	if animation != null:
+		animation.play("pour_cider")
+		await animation.animation_finished
 	
 	get_viewport().gui_get_focus_owner().release_focus()
 	

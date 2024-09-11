@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=4 uid="uid://bnrukoflrm7n6"]
+
+[ext_resource type="TileSet" uid="uid://b6lsimf27qnti" path="res://minigames/platformer/tileset.tres" id="1_xcteh"]
+
+[node name="Tiletemplate" type="TileMapLayer"]
+tile_map_data = PackedByteArray("AAAAABAAAQAAAAAAAAAdABAAAQAAAAAAAAAcABAAAQAAAAAAAAAbABAAAQAAAAAAAAAaABAAAQAAAAAAAAABABAAAQAAAAAAAAACABAAAQAAAAAAAAADABAAAQAAAAAAAAA=")
+tile_set = ExtResource("1_xcteh")

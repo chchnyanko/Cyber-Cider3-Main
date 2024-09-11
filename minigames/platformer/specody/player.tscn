@@ -1,0 +1,101 @@
+[gd_scene load_steps=12 format=3 uid="uid://cts0v4n052ng2"]
+
+[ext_resource type="Script" path="res://minigames/platformer/specody/player.gd" id="1_kr211"]
+[ext_resource type="SpriteFrames" uid="uid://b6rkuy0wdv5py" path="res://minigames/platformer/specody/nightanimation.tres" id="2_76dnv"]
+[ext_resource type="Script" path="res://minigames/platformer/specody/states.gd" id="3_ed7me"]
+[ext_resource type="Script" path="res://minigames/platformer/specody/dash.gd" id="4_ad6p3"]
+[ext_resource type="Script" path="res://minigames/platformer/specody/fall.gd" id="5_da48b"]
+[ext_resource type="Script" path="res://minigames/platformer/specody/idle.gd" id="6_r15yb"]
+[ext_resource type="Script" path="res://minigames/platformer/specody/jump.gd" id="7_qc4os"]
+[ext_resource type="Script" path="res://minigames/platformer/specody/move.gd" id="8_4u1xw"]
+[ext_resource type="Script" path="res://minigames/platformer/specody/wall.gd" id="9_ksguu"]
+[ext_resource type="Script" path="res://minigames/platformer/specody/walljump.gd" id="10_cc4je"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cnmf2"]
+size = Vector2(32, 62)
+
+[node name="player" type="CharacterBody2D"]
+z_index = 50
+script = ExtResource("1_kr211")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("2_76dnv")
+animation = &"dash"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_cnmf2")
+
+[node name="states" type="Node" parent="."]
+script = ExtResource("3_ed7me")
+
+[node name="dash" type="Node" parent="states"]
+script = ExtResource("4_ad6p3")
+
+[node name="dashduration" type="Timer" parent="states/dash"]
+one_shot = true
+
+[node name="fall" type="Node" parent="states"]
+script = ExtResource("5_da48b")
+
+[node name="coyotetime" type="Timer" parent="states/fall"]
+one_shot = true
+
+[node name="idle" type="Node" parent="states"]
+script = ExtResource("6_r15yb")
+
+[node name="jump" type="Node" parent="states"]
+script = ExtResource("7_qc4os")
+
+[node name="jumpholdtimer" type="Timer" parent="states/jump"]
+one_shot = true
+
+[node name="move" type="Node" parent="states"]
+script = ExtResource("8_4u1xw")
+
+[node name="wall" type="Node" parent="states"]
+script = ExtResource("9_ksguu")
+
+[node name="walljump" type="Node" parent="states"]
+script = ExtResource("10_cc4je")
+
+[node name="walljumptime" type="Timer" parent="states/walljump"]
+one_shot = true
+
+[node name="raycasts" type="Node2D" parent="."]
+
+[node name="topright" type="RayCast2D" parent="raycasts"]
+position = Vector2(0, -32)
+target_position = Vector2(22, 0)
+collision_mask = 2
+
+[node name="bottomright" type="RayCast2D" parent="raycasts"]
+position = Vector2(0, 30)
+target_position = Vector2(22, 0)
+collision_mask = 2
+
+[node name="topleft" type="RayCast2D" parent="raycasts"]
+position = Vector2(0, -32)
+target_position = Vector2(-22, 0)
+collision_mask = 2
+
+[node name="bottomleft" type="RayCast2D" parent="raycasts"]
+position = Vector2(0, 30)
+target_position = Vector2(-22, 0)
+collision_mask = 2
+
+[node name="fallTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="jumpbuffer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="states/dash/dashduration" to="states/dash" method="_on_dashduration_timeout"]
+[connection signal="timeout" from="states/fall/coyotetime" to="states/fall" method="_on_coyotetimer_timeout"]
+[connection signal="timeout" from="states/walljump/walljumptime" to="states/walljump" method="_on_walljumptime_timeout"]
+[connection signal="timeout" from="fallTimer" to="." method="_on_fall_timer_timeout"]
+[connection signal="timeout" from="jumpbuffer" to="." method="_on_jumpbuffer_timeout"]
