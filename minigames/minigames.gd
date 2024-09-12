@@ -10,7 +10,7 @@ const MINIGAMES: Array[String] = [
 	"res://minigames/simon_says/simon_says.tscn",#
 	
 	"res://minigames/boulder_escape/boulder_escape.tscn",
-	"res://minigames/match-a-block/match-a-block.tscn",
+	"res://minigames/match-a-block/match-a-block.tscn",#
 	"res://minigames/potion_making/potion_making.tscn",
 	"res://minigames/shootout/shootout.tscn",
 	"res://minigames/memory2/memory2.tscn",

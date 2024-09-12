@@ -135,7 +135,7 @@ func clear_row(axis: String, row: int):
 			var pos = block_position.find(index)
 			block_colours[pos] = random_colour
 			blocks_parent.get_child(pos).color = colour
-	if score == score_to_win:
+	if score > score_to_win - 1:
 		win()
 
 func win():

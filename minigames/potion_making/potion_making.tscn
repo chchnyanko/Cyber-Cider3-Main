@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwm6dc04jsmft"]
+
+[ext_resource type="Script" path="res://minigames/potion_making/potion_making.gd" id="1_hx682"]
+[ext_resource type="Texture2D" uid="uid://cb6677unne3ws" path="res://icon.svg" id="2_xqpwa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kclqg"]
+size = Vector2(362, 358)
+
+[node name="potion_making" type="Node2D"]
+script = ExtResource("1_hx682")
+number_of_items = 3
+number_of_fake_items = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 1116.0
+offset_top = -4.0
+offset_right = 1925.0
+offset_bottom = 1095.0
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+scroll_active = false
+
+[node name="cauldron" type="Area2D" parent="."]
+position = Vector2(1678, 855)
+
+[node name="Icon" type="Sprite2D" parent="cauldron"]
+scale = Vector2(2.8125, 2.8125)
+texture = ExtResource("2_xqpwa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cauldron"]
+shape = SubResource("RectangleShape2D_kclqg")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_entered" from="cauldron" to="." method="_on_cauldron_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
