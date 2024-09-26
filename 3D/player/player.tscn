@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d1hcf3nwyb30p"]
+[gd_scene load_steps=30 format=3 uid="uid://d1hcf3nwyb30p"]
 
 [ext_resource type="Script" path="res://3D/player/player.gd" id="1_yem3m"]
 [ext_resource type="SpriteFrames" uid="uid://c4g3utpl47nf1" path="res://3D/player/sprites/animation.tres" id="2_5iw2l"]
@@ -37,6 +37,13 @@ shader_parameter/colour_offset = 0.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_qckqf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ffb76"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_m8w2y"]
+device = -1
+keycode = 4194333
+
+[sub_resource type="Shortcut" id="Shortcut_5nsrg"]
+events = [SubResource("InputEventKey_m8w2y")]
 
 [sub_resource type="InputEventKey" id="InputEventKey_cwxlf"]
 device = -1
@@ -187,6 +194,7 @@ text = "Current Checkpoint: "
 
 [node name="unlock_all" type="Button" parent="debug/VBoxContainer"]
 layout_mode = 2
+shortcut = SubResource("Shortcut_5nsrg")
 text = "Unlock All Abilities"
 
 [node name="CheckButton" type="CheckButton" parent="debug"]

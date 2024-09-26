@@ -6,6 +6,7 @@ func _ready() -> void:
 	$Yarts.change_state($Yarts.statemachine.cut_scene, "tutorial")
 	data.tutorial = true
 	music.change_song()
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _on_top_of_tower_body_entered(body: Node3D) -> void:
 	if body is yarts:

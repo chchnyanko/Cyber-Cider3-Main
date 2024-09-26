@@ -1,24 +1,120 @@
-[gd_scene load_steps=2 format=3 uid="uid://5mvx55gwdhj5"]
+[gd_scene load_steps=9 format=3 uid="uid://5mvx55gwdhj5"]
 
 [ext_resource type="Script" path="res://minigames/memory2/memory2.gd" id="1_xi1j1"]
+[ext_resource type="Texture2D" uid="uid://dwgkvicv06vry" path="res://minigames/memory2/bell cat.png" id="2_doteh"]
+[ext_resource type="Texture2D" uid="uid://m0aooewbxbyl" path="res://minigames/memory2/carl.png" id="3_2rk1k"]
+[ext_resource type="Texture2D" uid="uid://bivit8yc1vndw" path="res://minigames/memory2/cow cat.png" id="4_f41yt"]
+[ext_resource type="Texture2D" uid="uid://cmh2rw5rmqbvk" path="res://minigames/memory2/slime cat.png" id="5_co5ia"]
+[ext_resource type="Texture2D" uid="uid://ba5uqlgd07x37" path="res://minigames/memory2/tanuki cat.png" id="6_gembk"]
+[ext_resource type="Texture2D" uid="uid://bdh0glsp8mdoh" path="res://minigames/memory2/card back.png" id="7_cpxbd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2u4xe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_doteh")
+}],
+"loop": true,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2rk1k")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_f41yt")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_co5ia")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_gembk")
+}],
+"loop": true,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_cpxbd")
+}],
+"loop": true,
+"name": &"back",
+"speed": 5.0
+}]
 
 [node name="memory2" type="Node2D"]
 script = ExtResource("1_xi1j1")
-width = 5
-height = 6
-
-[node name="grid" type="GridContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1920.0
-offset_bottom = 1080.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = 10
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="cards_parent" type="Node" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="cards_parent"]
+position = Vector2(565, 333)
+sprite_frames = SubResource("SpriteFrames_2u4xe")
+animation = &"back"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="cards_parent"]
+position = Vector2(765, 333)
+sprite_frames = SubResource("SpriteFrames_2u4xe")
+animation = &"back"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="cards_parent"]
+position = Vector2(965, 333)
+sprite_frames = SubResource("SpriteFrames_2u4xe")
+animation = &"back"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="cards_parent"]
+position = Vector2(1165, 333)
+sprite_frames = SubResource("SpriteFrames_2u4xe")
+animation = &"back"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="cards_parent"]
+position = Vector2(1365, 333)
+sprite_frames = SubResource("SpriteFrames_2u4xe")
+animation = &"back"
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="cards_parent"]
+position = Vector2(565, 733)
+sprite_frames = SubResource("SpriteFrames_2u4xe")
+animation = &"back"
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="cards_parent"]
+position = Vector2(765, 733)
+sprite_frames = SubResource("SpriteFrames_2u4xe")
+animation = &"back"
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="cards_parent"]
+position = Vector2(965, 733)
+sprite_frames = SubResource("SpriteFrames_2u4xe")
+animation = &"back"
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="cards_parent"]
+position = Vector2(1165, 733)
+sprite_frames = SubResource("SpriteFrames_2u4xe")
+animation = &"back"
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="cards_parent"]
+position = Vector2(1365, 733)
+sprite_frames = SubResource("SpriteFrames_2u4xe")
+animation = &"back"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

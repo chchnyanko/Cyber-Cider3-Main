@@ -1,0 +1,68 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://character.gd" type="Script" id=1]
+[ext_resource path="res://Boy Walk/Boy Walk Frame 2.png" type="Texture2D" id=2]
+[ext_resource path="res://Boy Walk/Boy Walk Frame 5.png" type="Texture2D" id=3]
+[ext_resource path="res://Boy Walk/Boy Walk Frame 1.png" type="Texture2D" id=4]
+[ext_resource path="res://Boy Walk/Boy Walk Frame 3.png" type="Texture2D" id=5]
+[ext_resource path="res://Boy Walk/Boy Walk Frame 4.png" type="Texture2D" id=6]
+[ext_resource path="res://Boy Walk/Boy Walk Frame 6.png" type="Texture2D" id=7]
+[ext_resource path="res://Idles/Boy Idle.png" type="Texture2D" id=8]
+[ext_resource path="res://Idles/Idle Boy Frame 3.png" type="Texture2D" id=9]
+[ext_resource path="res://Idles/Idle Boy Frame 4.png" type="Texture2D" id=10]
+[ext_resource path="res://Idles/Idle Boy Frame 1.png" type="Texture2D" id=11]
+[ext_resource path="res://Idles/Idle Boy Frame 2.png" type="Texture2D" id=12]
+[ext_resource path="res://Boy Walk/Boy Wheel Crouch 2.png" type="Texture2D" id=13]
+[ext_resource path="res://Boy Walk/Boy Wheel Crouch 3.png" type="Texture2D" id=14]
+[ext_resource path="res://Boy Walk/Boy Wheel Crouch 1.png" type="Texture2D" id=15]
+[ext_resource path="res://Boy Jump Frame 2.png" type="Texture2D" id=16]
+[ext_resource path="res://Boy Jump Frame 1.png" type="Texture2D" id=17]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ) ],
+"loop": true,
+"name": "fall",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "crouch",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=1]
+size = Vector2( 14, 29.5 )
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+scale = Vector2( 2, 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+frames = SubResource( 2 )
+animation = "idle"
+frame = 4
+speed_scale = 2.0
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 2.5, -1.5 )
+shape = SubResource( 1 )

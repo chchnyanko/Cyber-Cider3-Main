@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://title.gd" type="Script" id=1]
+[ext_resource path="res://game development tileset/AROHATitle.png" type="Texture" id=5]
+[ext_resource path="res://game development tileset/LevelSelectBASE.png" type="Texture" id=6]
+[ext_resource path="res://game development tileset/LevelSelectPRESS.png" type="Texture" id=7]
+[ext_resource path="res://game development tileset/LevelSelectHOVER.png" type="Texture" id=8]
+
+[node name="Node2D" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="ArohaTitle" type="Sprite" parent="."]
+position = Vector2( 1171, 521 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 5 )
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = 683.0
+margin_top = 980.0
+margin_right = 883.0
+margin_bottom = 1030.0
+rect_scale = Vector2( 4, 4 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 8 )
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]

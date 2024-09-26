@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Game Menu Sound.mp3-be32c67fa688822cab9c4caaddd3bc76.mp3str"
+
+[deps]
+
+source_file="res://sound/Game Menu Sound.mp3"
+dest_files=[ "res://.import/Game Menu Sound.mp3-be32c67fa688822cab9c4caaddd3bc76.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

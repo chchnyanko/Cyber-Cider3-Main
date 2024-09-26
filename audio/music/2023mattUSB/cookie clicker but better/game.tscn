@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://cookies.gd" type="Script" id=1]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+margin_left = 252.0
+margin_top = 96.0
+margin_right = 752.0
+margin_bottom = 496.0
+text = "click"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+pause_mode = 2
+margin_right = 40.0
+margin_bottom = 14.0
+rect_scale = Vector2( 5, 5 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Popup" type="Popup" parent="Label"]
+pause_mode = 2
+visible = true
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="multi" type="Button" parent="Label/Popup"]
+margin_right = 12.0
+margin_bottom = 20.0
+text = "cookies per click"
+
+[node name="close" type="Button" parent="Label/Popup"]
+margin_left = 96.0
+margin_top = 1.0
+margin_right = 204.0
+margin_bottom = 21.0
+text = "close upgrades"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="."]
+margin_left = 884.0
+margin_top = 15.0
+margin_right = 990.0
+margin_bottom = 35.0
+text = "open upgrades"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Button" to="Label" method="_on_Button_pressed"]
+[connection signal="pressed" from="Label/Popup/multi" to="Label" method="_on_multi_pressed"]
+[connection signal="pressed" from="Label/Popup/close" to="Label" method="_on_close_pressed"]
+[connection signal="pressed" from="Button2" to="Label" method="_on_Button2_pressed"]

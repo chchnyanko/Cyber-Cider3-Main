@@ -1,0 +1,409 @@
+[gd_scene load_steps=32 format=2]
+
+[ext_resource path="res://character1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://character2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://tiles/allcorners.png" type="Texture2D" id=3]
+[ext_resource path="res://tiles/left.png" type="Texture2D" id=4]
+[ext_resource path="res://tiles/2corner.png" type="Texture2D" id=5]
+[ext_resource path="res://tiles/up.png" type="Texture2D" id=6]
+[ext_resource path="res://tiles/updown.png" type="Texture2D" id=7]
+[ext_resource path="res://tiles/allsides.png" type="Texture2D" id=8]
+[ext_resource path="res://tiles/upleftright.png" type="Texture2D" id=9]
+[ext_resource path="res://tiles/1corner.png" type="Texture2D" id=10]
+[ext_resource path="res://tiles/2corneralt.png" type="Texture2D" id=11]
+[ext_resource path="res://tiles/3cornealt.png" type="Texture2D" id=12]
+[ext_resource path="res://tiles/upleft.png" type="Texture2D" id=13]
+[ext_resource path="res://tiles/leftright.png" type="Texture2D" id=14]
+[ext_resource path="res://tiles/3corner.png" type="Texture2D" id=15]
+[ext_resource path="res://tiles/topleftdown.png" type="Texture2D" id=16]
+[ext_resource path="res://Boy Jump Frame 1.png" type="Texture2D" id=17]
+[ext_resource path="res://tiles/bricks.png" type="Texture2D" id=18]
+[ext_resource path="res://tiles/nobricks.png" type="Texture2D" id=19]
+[ext_resource path="res://tag.gd" type="Script" id=20]
+[ext_resource path="res://game development tileset/Cave Background Finished - Final.png" type="Texture2D" id=21]
+[ext_resource path="res://game development tileset/tag-4.png.png" type="Texture2D" id=40]
+[ext_resource path="res://game development tileset/tag-3.png.png" type="Texture2D" id=42]
+
+[sub_resource type="CompressedTexture2D" id=114]
+flags = 4
+load_path = "res://.import/tag-1.png.png-36ca73c8538a088b36a86fed0b33be4b.stex"
+
+[sub_resource type="RectangleShape2D" id=110]
+size = Vector2( 17.25, 32.5 )
+
+[sub_resource type="ConvexPolygonShape2D" id=104]
+points = PackedVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=105]
+points = PackedVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=106]
+points = PackedVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
+
+[sub_resource type="TileSet" id=107]
+0/name = "nobricks.png 0"
+0/texture = ExtResource( 19 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 64, 64 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 104 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 104 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+1/name = "bricks.png 1"
+1/texture = ExtResource( 18 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 64, 64 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape = SubResource( 105 )
+1/shape_one_way = false
+1/shape_one_way_margin = 1.0
+1/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 105 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+1/z_index = 0
+2/name = "Boy Jump Frame 1.png 2"
+2/texture = ExtResource( 17 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, -64, 64, 64 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape = SubResource( 106 )
+2/shape_one_way = false
+2/shape_one_way_margin = 1.0
+2/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 106 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+2/z_index = 0
+
+[sub_resource type="TileSet" id=108]
+0/name = "1corner.png 0"
+0/texture = ExtResource( 10 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 64, 64 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "2corner.png 1"
+1/texture = ExtResource( 5 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 64, 64 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "2corneralt.png 2"
+2/texture = ExtResource( 11 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 64, 64 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+3/name = "3cornealt.png 3"
+3/texture = ExtResource( 12 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 0, 0, 64, 64 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0
+4/name = "3corner.png 4"
+4/texture = ExtResource( 15 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 0, 0, 64, 64 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
+4/shapes = [  ]
+4/z_index = 0
+5/name = "allcorners.png 5"
+5/texture = ExtResource( 3 )
+5/tex_offset = Vector2( 0, 0 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 0, 0, 64, 64 )
+5/tile_mode = 0
+5/occluder_offset = Vector2( 0, 0 )
+5/navigation_offset = Vector2( 0, 0 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+5/shape_one_way = false
+5/shape_one_way_margin = 0.0
+5/shapes = [  ]
+5/z_index = 0
+
+[sub_resource type="TileSet" id=109]
+0/name = "allsides.png 0"
+0/texture = ExtResource( 8 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 64, 64 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "left.png 1"
+1/texture = ExtResource( 4 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 64, 64 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "leftright.png 2"
+2/texture = ExtResource( 14 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 64, 64 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+3/name = "topleftdown.png 3"
+3/texture = ExtResource( 16 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 0, 0, 64, 64 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0
+4/name = "up.png 4"
+4/texture = ExtResource( 6 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 0, 0, 64, 64 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
+4/shapes = [  ]
+4/z_index = 0
+5/name = "updown.png 5"
+5/texture = ExtResource( 7 )
+5/tex_offset = Vector2( 0, 0 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 0, 0, 64, 64 )
+5/tile_mode = 0
+5/occluder_offset = Vector2( 0, 0 )
+5/navigation_offset = Vector2( 0, 0 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+5/shape_one_way = false
+5/shape_one_way_margin = 0.0
+5/shapes = [  ]
+5/z_index = 0
+6/name = "upleft.png 6"
+6/texture = ExtResource( 13 )
+6/tex_offset = Vector2( 0, 0 )
+6/modulate = Color( 1, 1, 1, 1 )
+6/region = Rect2( 0, 0, 64, 64 )
+6/tile_mode = 0
+6/occluder_offset = Vector2( 0, 0 )
+6/navigation_offset = Vector2( 0, 0 )
+6/shape_offset = Vector2( 0, 0 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+6/shape_one_way = false
+6/shape_one_way_margin = 0.0
+6/shapes = [  ]
+6/z_index = 0
+7/name = "upleftright.png 7"
+7/texture = ExtResource( 9 )
+7/tex_offset = Vector2( 0, 0 )
+7/modulate = Color( 1, 1, 1, 1 )
+7/region = Rect2( 0, 0, 64, 64 )
+7/tile_mode = 0
+7/occluder_offset = Vector2( 0, 0 )
+7/navigation_offset = Vector2( 0, 0 )
+7/shape_offset = Vector2( 0, 0 )
+7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+7/shape_one_way = false
+7/shape_one_way_margin = 0.0
+7/shapes = [  ]
+7/z_index = 0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 14.0
+text = "____ is  it"
+script = ExtResource( 20 )
+
+[node name="boyprogress" type="TextureProgressBar" parent="Label"]
+offset_left = 1.0
+offset_top = 1216.0
+offset_right = 65.0
+offset_bottom = 1280.0
+grow_horizontal = 0
+scale = Vector2( 17.5, 1 )
+size_flags_horizontal = 0
+max_value = 30.0
+step = 0.1
+texture_under = SubResource( 114 )
+texture_progress = ExtResource( 42 )
+fill_mode = 1
+
+[node name="girlprogress" type="TextureProgressBar" parent="Label"]
+offset_left = 1120.0
+offset_top = 1216.0
+offset_right = 2240.0
+offset_bottom = 1280.0
+scale = Vector2( 17.5, 1 )
+max_value = 30.0
+step = 0.1
+texture_under = SubResource( 114 )
+texture_progress = ExtResource( 40 )
+
+[node name="boy" parent="Label" instance=ExtResource( 1 )]
+position = Vector2( 72, 1148 )
+
+[node name="Area2D" type="Area2D" parent="Label/boy"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Label/boy/Area2D"]
+position = Vector2( 2.25, -1.5 )
+scale = Vector2( 0.849322, 0.88878 )
+shape = SubResource( 110 )
+
+[node name="girl" parent="Label" instance=ExtResource( 2 )]
+position = Vector2( 2161, 1149 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="Camera3D" type="Camera3D" parent="Label"]
+current = true
+fov = 29.7008
+
+[node name="AnimatedSprite3D" type="Sprite3D" parent="Label/Camera3D"]
+transform = Transform3D( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -1 )
+flip_h = true
+
+[node name="sprite" type="Sprite3D" parent="Label/Camera3D"]
+transform = Transform3D( 0.6, 0, 0, 0, 0.6, 0, 0, 0, 1, 0, 0, -13 )
+texture = ExtResource( 21 )
+
+[node name="Button" type="Button" parent="Label"]
+visible = false
+offset_left = 1250.0
+offset_top = 1064.0
+offset_right = 1301.0
+offset_bottom = 1084.0
+scale = Vector2( 5, 5 )
+text = "replay"
+
+[node name="back" type="TileMap" parent="."]
+tile_set = SubResource( 107 )
+show_collision = true
+collision_layer = 3
+collision_mask = 3
+format = 1
+tile_data = PackedInt32Array( -1, 2, 0, -65536, 2, 0, -65535, 2, 0, -65534, 2, 0, -65533, 2, 0, -65532, 2, 0, -65531, 2, 0, -65530, 2, 0, -65529, 2, 0, -65528, 2, 0, -65527, 2, 0, -65526, 2, 0, -65525, 2, 0, -65524, 2, 0, -65523, 2, 0, -65522, 2, 0, -65521, 2, 0, -65520, 2, 0, -65519, 2, 0, -65518, 2, 0, -65517, 2, 0, -65516, 2, 0, -65515, 2, 0, -65514, 2, 0, -65513, 2, 0, -65512, 2, 0, -65511, 2, 0, -65510, 2, 0, -65509, 2, 0, -65508, 2, 0, -65507, 2, 0, -65506, 2, 0, -65505, 2, 0, -65504, 2, 0, -65503, 2, 0, -65502, 2, 0, -65501, 2, 0, 65535, 2, 0, 35, 2, 0, 131071, 2, 0, 65571, 2, 0, 196607, 2, 0, 131088, 0, 0, 131107, 2, 0, 262143, 2, 0, 196610, 0, 0, 196643, 2, 0, 327679, 2, 0, 262151, 0, 0, 262154, 0, 0, 262155, 0, 0, 262156, 0, 0, 262157, 0, 0, 262158, 0, 0, 262159, 0, 0, 262160, 0, 0, 262161, 0, 0, 262162, 0, 0, 262163, 0, 0, 262167, 0, 0, 262168, 0, 0, 262169, 0, 0, 262170, 0, 0, 262179, 2, 0, 393215, 2, 0, 327685, 0, 0, 327686, 0, 0, 327691, 0, 0, 327696, 0, 0, 327706, 0, 0, 327707, 0, 0, 327708, 0, 0, 327709, 0, 0, 327715, 2, 0, 458751, 2, 0, 393220, 0, 0, 393232, 0, 0, 393238, 0, 0, 393242, 0, 0, 393249, 0, 0, 393250, 0, 0, 393251, 2, 0, 524287, 2, 0, 458752, 0, 0, 458756, 0, 0, 458773, 0, 0, 458774, 0, 0, 458778, 0, 0, 458787, 2, 0, 589823, 2, 0, 524288, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524314, 0, 0, 524323, 2, 0, 655359, 2, 0, 589824, 0, 0, 589825, 0, 0, 589828, 0, 0, 589831, 0, 0, 589838, 0, 0, 589839, 0, 0, 589840, 0, 0, 589841, 0, 0, 589842, 0, 0, 589850, 0, 0, 589855, 0, 0, 589856, 0, 0, 589857, 0, 0, 589859, 2, 0, 720895, 2, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655378, 0, 0, 655379, 0, 0, 655386, 0, 0, 655393, 0, 0, 655394, 0, 0, 655395, 2, 0, 786431, 2, 0, 720899, 0, 0, 720900, 0, 0, 720901, 0, 0, 720907, 0, 0, 720908, 0, 0, 720916, 0, 0, 720922, 0, 0, 720923, 0, 0, 720930, 0, 0, 720931, 2, 0, 851967, 2, 0, 786432, 0, 0, 786435, 0, 0, 786441, 0, 0, 786442, 0, 0, 786443, 0, 0, 786452, 0, 0, 786453, 0, 0, 786454, 0, 0, 786458, 0, 0, 786459, 0, 0, 786460, 0, 0, 786467, 2, 0, 917503, 2, 0, 851968, 0, 0, 851982, 0, 0, 851983, 0, 0, 851994, 0, 0, 851995, 0, 0, 851996, 0, 0, 852003, 2, 0, 983039, 2, 0, 917504, 0, 0, 917509, 0, 0, 917510, 0, 0, 917511, 0, 0, 917517, 0, 0, 917518, 0, 0, 917519, 0, 0, 917520, 0, 0, 917529, 0, 0, 917530, 0, 0, 917531, 0, 0, 917534, 0, 0, 917539, 2, 0, 1048575, 2, 0, 983040, 0, 0, 983041, 0, 0, 983045, 0, 0, 983046, 0, 0, 983052, 0, 0, 983056, 0, 0, 983057, 0, 0, 983061, 0, 0, 983062, 0, 0, 983065, 0, 0, 983066, 0, 0, 983067, 0, 0, 983070, 0, 0, 983075, 2, 0, 1114111, 2, 0, 1048597, 0, 0, 1048606, 0, 0, 1048607, 0, 0, 1048611, 2, 0, 1179647, 2, 0, 1114116, 0, 0, 1114117, 0, 0, 1114118, 0, 0, 1114147, 2, 0, 1245183, 2, 0, 1179652, 0, 0, 1179653, 0, 0, 1179654, 0, 0, 1179657, 0, 0, 1179661, 0, 0, 1179664, 0, 0, 1179665, 0, 0, 1179666, 0, 0, 1179667, 0, 0, 1179668, 0, 0, 1179669, 0, 0, 1179670, 0, 0, 1179671, 0, 0, 1179672, 0, 0, 1179673, 0, 0, 1179683, 2, 0, 1245184, 2, 0, 1245185, 2, 0, 1245186, 2, 0, 1245187, 2, 0, 1245188, 2, 0, 1245189, 2, 0, 1245190, 2, 0, 1245191, 2, 0, 1245192, 2, 0, 1245193, 2, 0, 1245194, 2, 0, 1245195, 2, 0, 1245196, 2, 0, 1245197, 2, 0, 1245198, 2, 0, 1245199, 2, 0, 1245200, 2, 0, 1245201, 2, 0, 1245202, 2, 0, 1245203, 2, 0, 1245204, 2, 0, 1245205, 2, 0, 1245206, 2, 0, 1245207, 2, 0, 1245208, 2, 0, 1245209, 2, 0, 1245210, 2, 0, 1245211, 2, 0, 1245212, 2, 0, 1245213, 2, 0, 1245214, 2, 0, 1245215, 2, 0, 1245216, 2, 0, 1245217, 2, 0, 1245218, 2, 0 )
+
+[node name="corner" type="TileMap" parent="."]
+z_index = 2
+tile_set = SubResource( 108 )
+collision_layer = 3
+collision_mask = 3
+format = 1
+
+[node name="around" type="TileMap" parent="."]
+z_index = 1
+tile_set = SubResource( 109 )
+collision_layer = 3
+collision_mask = 3
+format = 1
+
+[node name="decoration" type="Node2D" parent="."]
+show_behind_parent = true
+scale = Vector2( 3, 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[connection signal="body_entered" from="Label/boy/Area2D" to="Label" method="_on_Area2D_body_entered"]
+[connection signal="pressed" from="Label/Button" to="Label" method="_on_Button_pressed"]

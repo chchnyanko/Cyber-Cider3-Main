@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://game development tileset/Door.png" type="Texture2D" id=1]
+[ext_resource path="res://boydoor.gd" type="Script" id=2]
+[ext_resource path="res://game development tileset/Open Door.png" type="Texture2D" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+size = Vector2( 30, 56 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="door" type="Area2D"]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 8 )
+shape = SubResource( 1 )
+
+[node name="Door" type="AnimatedSprite2D" parent="."]
+modulate = Color( 0.72549, 0.709804, 1, 1 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 2 )
+
+[connection signal="body_entered" from="." to="." method="_on_door_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_door_body_exited"]

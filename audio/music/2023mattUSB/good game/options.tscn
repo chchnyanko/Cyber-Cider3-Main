@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="Theme" id=1]
+
+[node name="Node" type="Node"]
+
+[node name="TextEdit" type="TextEdit" parent="."]
+margin_left = 1.0
+margin_top = -1.0
+margin_right = 502.0
+margin_bottom = 350.0
+theme = SubResource( 1 )
+text = "hello welcome to options
+there are no options here yet nut soon you will be able to change your
+ control options etc"

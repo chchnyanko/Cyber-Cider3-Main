@@ -1,0 +1,89 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://enemy.gd" type="Script" id=2]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "10",
+"speed": 5.0
+} ]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="SpotLight" type="SpotLight" parent="."]
+transform = Transform( 0.960181, -0.140927, 0.241231, -0.114392, 0.589441, 0.799671, -0.254887, -0.795424, 0.549848, 2, 4, 1 )
+light_energy = 2.908
+light_indirect_energy = 0.266
+shadow_enabled = true
+spot_range = 6.0
+spot_angle = 17.6651
+
+[node name="SpotLight2" type="SpotLight" parent="."]
+transform = Transform( 0.852333, 0.467155, -0.235148, -0.104504, 0.592672, 0.798636, 0.512452, -0.65613, 0.553974, -2, 4, 1 )
+light_energy = 2.908
+light_indirect_energy = 0.266
+shadow_enabled = true
+spot_range = 6.0
+spot_angle = 17.5329
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.906603, 0.421985, 0, -0.421985, 0.906603, 0, 1.84615, 1.93578 )
+
+[node name="objects" type="Spatial" parent="."]
+
+[node name="CSGBox" type="CSGBox" parent="objects"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
+width = 6.0
+height = 0.002
+depth = 4.0
+
+[node name="CSGBox2" type="CSGBox" parent="objects"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3 )
+width = 6.0
+height = 4.0
+depth = 0.002
+
+[node name="CSGBox3" type="CSGBox" parent="objects"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, -1 )
+width = 0.002
+height = 4.0
+depth = 4.0
+
+[node name="CSGBox4" type="CSGBox" parent="objects"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -1 )
+width = 0.002
+height = 4.0
+depth = 4.0
+
+[node name="CSGBox5" type="CSGBox" parent="objects"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
+width = 3.517
+height = 0.841
+depth = 3.587
+
+[node name="player" type="Spatial" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.75, -1 )
+texture = ExtResource( 1 )
+
+[node name="attack" type="Spatial" parent="player"]
+
+[node name="CSGCylinder" type="CSGCylinder" parent="player/attack"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.744835, 1.7329, -0.276256 )
+radius = 0.430201
+height = 0.235376
+sides = 64
+
+[node name="enemy" type="Spatial" parent="."]
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="enemy"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 1.75 )
+visible = false
+modulate = Color( 1, 0, 0, 1 )
+frames = SubResource( 1 )
+animation = "10"

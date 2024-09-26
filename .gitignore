@@ -15,3 +15,7 @@ data_*/
 mono_crash.*.json
 .DS_Store
 .DS_Store
+.DS_Store
+3D/.DS_Store
+3D/player/.DS_Store
+3D/player/sprites/.DS_Store
