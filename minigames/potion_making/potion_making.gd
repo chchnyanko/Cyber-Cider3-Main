@@ -43,7 +43,7 @@ func remove_item(item_name: String = ""):
 		return
 
 func set_text(resetting: bool = false):
-	instruction.text = "Ingredients \n"
+	instruction.text = "Ingredients: \n"
 	if resetting:
 		for i in needed_ingredients.size():
 			instruction.text += get_text(needed_ingredients[i])

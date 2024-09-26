@@ -1,0 +1,136 @@
+[gd_scene load_steps=5 format=3 uid="uid://ntx1i6vmb0pr"]
+
+[ext_resource type="Script" path="res://ui menu/credits.gd" id="1_xkvfr"]
+
+[sub_resource type="Animation" id="Animation_unpg7"]
+resource_name = "credits"
+length = 25.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.433333, 19.9333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(204, 447), Vector2(204, -8648)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"exit"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_orlkk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(606, 447)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i13fx"]
+_data = {
+"RESET": SubResource("Animation_orlkk"),
+"credits": SubResource("Animation_unpg7")
+}
+
+[node name="credits" type="Node2D"]
+script = ExtResource("1_xkvfr")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 606.0
+offset_top = 447.0
+offset_right = 2129.0
+offset_bottom = 9684.0
+theme_override_font_sizes/font_size = 100
+text = "Cyber Cider3
+
+
+
+
+Made by:
+
+Matthew Rickard
+Levi Spencer Yi-Huai Donaldson
+Akash Chattikal
+
+
+
+Art
+
+Lead artist
+Akash Chattikal
+
+Character design
+Levi Donaldson
+
+
+2D art
+Levi Donalson
+
+
+Environment design
+Akash Chattikal
+
+3D art
+Akash Chattikal
+
+
+UI design
+Matthew Rickard
+
+
+
+Programming
+
+Lead programmer
+Matthew Rickard
+
+
+Player controls
+Matthew Rickard
+
+
+Sky shader
+Lexpartizan
+Copyright (c) 2023 Lexpartizan
+
+
+
+Music
+
+Suno AI
+
+
+
+
+
+
+
+
+Thanks for playing"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i13fx")
+}
