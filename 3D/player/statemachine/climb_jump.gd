@@ -12,7 +12,7 @@ func update(delta):
 
 
 func enter_state():
-	player.play_animation("walljump")
+	player.play_animation("jump")
 	climb()
 	player.velocity.y = climb_speed * 5
 	jumping = true

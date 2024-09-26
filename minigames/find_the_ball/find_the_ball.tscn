@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dr3bqy1psa83s"]
+[gd_scene load_steps=9 format=3 uid="uid://dr3bqy1psa83s"]
 
 [ext_resource type="Script" path="res://minigames/find_the_ball/find_the_ball.gd" id="1_26u7a"]
 [ext_resource type="Texture2D" uid="uid://1fwgdjumybyl" path="res://minigames/find_the_ball/ball.png" id="2_vmh70"]
 [ext_resource type="Texture2D" uid="uid://bo3tpvhdu4h60" path="res://minigames/find_the_ball/cup.png" id="3_r01na"]
 [ext_resource type="Texture2D" uid="uid://briyuxl7eadop" path="res://minigames/find_the_ball/table.png" id="4_nb0cd"]
+[ext_resource type="Texture2D" uid="uid://b0qcc0rnd53c" path="res://minigames/find_the_ball/picture1.png" id="5_a7w6f"]
+[ext_resource type="Texture2D" uid="uid://dm03gboj7dfl" path="res://minigames/find_the_ball/picture2.png" id="6_8786w"]
+[ext_resource type="Texture2D" uid="uid://cdmtlhemewd0q" path="res://minigames/find_the_ball/picture3.png" id="7_akt7y"]
+[ext_resource type="Texture2D" uid="uid://bwtqsmyrlk5l6" path="res://minigames/find_the_ball/picture4.png" id="8_dne2o"]
 
 [node name="find_the_ball" type="Node2D"]
 script = ExtResource("1_26u7a")
@@ -52,5 +56,28 @@ offset_bottom = 23.0
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Picture1" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(467, 276.467)
+scale = Vector2(2.0137, 2.0137)
+texture = ExtResource("5_a7w6f")
+
+[node name="Picture2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(837, 212.125)
+scale = Vector2(2.27982, 2.27982)
+texture = ExtResource("6_8786w")
+
+[node name="Picture3" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(1421, 234.125)
+texture = ExtResource("7_akt7y")
+
+[node name="Picture4" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(1101, 245.125)
+scale = Vector2(4.14583, 4.14583)
+texture = ExtResource("8_dne2o")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

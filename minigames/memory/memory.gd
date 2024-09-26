@@ -6,6 +6,7 @@ extends Node2D
 @onready var buttons_parent: Node = $button
 @onready var timer: Timer = $Timer
 @onready var label: Label = $Label
+@onready var animation: AnimationPlayer = $AnimationPlayer
 
 var buttons: Array[TextureButton]
 var random_order: Array[int]
@@ -19,14 +20,20 @@ func _ready() -> void:
 		var but: TextureButton = buttons_parent.get_child(i)
 		buttons.append(but)
 		but.mouse_entered.connect(hover.bind(i))
+		but.mouse_exited.connect(unhover.bind(i))
 		but.pressed.connect(press.bind(i))
 	current_state = 1
 	count()
 
 func hover(button: int) -> void:
 	buttons[button].grab_focus()
+	buttons[button].get_child(0).play("hover")
+
+func unhover(button: int) -> void:
+	buttons[button].get_child(0).play("not pressed")
 
 func press(button: int) -> void:
+	buttons[button].get_child(0).play("pressed")
 	if current_state == 2:
 		if button == random_order[current_button]:
 			if current_button == total_buttons:
@@ -35,6 +42,7 @@ func press(button: int) -> void:
 					current_state = 1
 					current_button = 0
 					count()
+					animation.play("correct")
 					if get_viewport().gui_get_focus_owner():
 						get_viewport().gui_get_focus_owner().release_focus()
 				else:
@@ -42,6 +50,7 @@ func press(button: int) -> void:
 			else:
 				current_button += 1
 		else:
+			animation.play("wrong")
 			end()
 
 func count() -> void:
@@ -49,12 +58,12 @@ func count() -> void:
 		if len(random_order) == current_button:
 			var num: int = randi_range(0, 8)
 			random_order.append(num)
-		buttons[random_order[current_button]].disabled = true
+		buttons[random_order[current_button]].get_child(0).play("show")
 		timer.start(show_time)
 
 func _on_timer_timeout() -> void:
 	if current_state == 1:
-		buttons[random_order[current_button]].disabled = false
+		buttons[random_order[current_button]].get_child(0).play("not pressed")
 		current_button += 1
 		if current_button <= total_buttons:
 			count()

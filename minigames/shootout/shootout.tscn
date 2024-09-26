@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2idx8lri6j4e"]
+
+[ext_resource type="Script" path="res://minigames/shootout/shootout.gd" id="1_cnsjo"]
+[ext_resource type="Texture2D" uid="uid://bbkgg1tucqlel" path="res://minigames/shootout/gun.png" id="2_ol3n1"]
+
+[sub_resource type="Animation" id="Animation_uxx0s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(990, 756)]
+}
+
+[sub_resource type="Animation" id="Animation_kk1lb"]
+resource_name = "gunshot"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gun:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(990, 756), Vector2(990, 650), Vector2(990, 756)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i88lb"]
+_data = {
+"RESET": SubResource("Animation_uxx0s"),
+"gunshot": SubResource("Animation_kk1lb")
+}
+
+[node name="shootout" type="Node2D"]
+script = ExtResource("1_cnsjo")
+score_to_win = 100
+targets_to_spawn_at_once = 10
+
+[node name="Gun" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(990, 756)
+texture = ExtResource("2_ol3n1")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i88lb")
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

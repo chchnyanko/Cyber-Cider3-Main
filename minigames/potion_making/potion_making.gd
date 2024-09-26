@@ -17,10 +17,11 @@ const ingredients: Dictionary = {
 	"rainbow": ["rainbow", "freq=1 sat=1 val=1"],
 	"tornado": ["tornado", "radius=0.1"],
 	"wave": ["wave", "amp=1"],
-	"pulse": ["pulse", "freq=1.0 color=#ffffff40 ease=-2.0"]
+	"pulse": ["pulse", "freq=1.0 color=#000000 ease=-2.0"]
 }
 
 var needed_ingredients: Array
+var won: bool = false
 
 func _ready() -> void:
 	set_text()
@@ -83,7 +84,9 @@ func _on_cauldron_area_entered(area: Area2D) -> void:
 		area.queue_free()
 
 func win():
+	won = true
 	timer.start(0.5)
 
 func _on_timer_timeout() -> void:
-	get_tree().change_scene_to_file("res://minigames/minigames.tscn")
+	if won:
+		get_tree().change_scene_to_file("res://minigames/minigames.tscn")

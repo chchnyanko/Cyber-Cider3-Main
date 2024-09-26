@@ -16,9 +16,11 @@ func update(delta):
 
 
 func enter_state():
-	player.play_animation("dash")
+	player.play_animation("walk")
 	collision.scale.y = 0.5
+	player.sprite.scale.y = 0.5
 
 
 func exit_state():
 	collision.scale.y = 1
+	player.sprite.scale.y = 1

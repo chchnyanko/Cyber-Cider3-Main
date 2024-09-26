@@ -9,7 +9,7 @@ var cutscene_name: String
 func update(delta):
 	if cutscene_name == "death":
 		if player.is_on_floor():
-			player.play_animation("wakeup", true)
+			player.play_animation("death")
 
 
 func enter_state():

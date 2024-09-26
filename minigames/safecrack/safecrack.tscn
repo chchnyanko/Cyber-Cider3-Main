@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwd0hasoq6fq"]
+
+[ext_resource type="Script" path="res://minigames/safecrack/safecrack.gd" id="1_ghf3c"]
+[ext_resource type="Texture2D" uid="uid://cb6677unne3ws" path="res://icon.svg" id="2_rq3i2"]
+
+[node name="safecrack" type="Node2D"]
+script = ExtResource("1_ghf3c")
+code_length = 100
+wait_time = 0.1
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="dial" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+scale = Vector2(3, 3)
+texture = ExtResource("2_rq3i2")
+
+[node name="Label2" type="Label" parent="."]
+offset_top = 97.0
+offset_right = 40.0
+offset_bottom = 120.0
+text = "0"
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

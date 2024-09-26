@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d1hcf3nwyb30p"]
+[gd_scene load_steps=28 format=3 uid="uid://d1hcf3nwyb30p"]
 
 [ext_resource type="Script" path="res://3D/player/player.gd" id="1_yem3m"]
 [ext_resource type="SpriteFrames" uid="uid://c4g3utpl47nf1" path="res://3D/player/sprites/animation.tres" id="2_5iw2l"]
@@ -14,6 +14,11 @@
 [ext_resource type="Script" path="res://3D/player/statemachine/dive.gd" id="10_v58nc"]
 [ext_resource type="Script" path="res://3D/player/statemachine/crawl.gd" id="11_ulmyl"]
 [ext_resource type="Script" path="res://3D/player/statemachine/cut_scene.gd" id="12_3oceu"]
+[ext_resource type="Script" path="res://3D/player/sound.gd" id="15_ujco5"]
+[ext_resource type="AudioStream" uid="uid://r51152ydn1w" path="res://audio/die.mp3" id="16_x5ewy"]
+[ext_resource type="AudioStream" uid="uid://bb6tnyt4oblgf" path="res://audio/Fast run.mp3" id="17_fl2k3"]
+[ext_resource type="AudioStream" uid="uid://bp24xs3kusw6g" path="res://audio/jump.mp3" id="18_ulucy"]
+[ext_resource type="AudioStream" uid="uid://ci7bak2xxpck4" path="res://audio/walk.mp3" id="19_npxye"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_enxae"]
 
@@ -27,7 +32,7 @@ albedo_texture = SubResource("ViewportTexture_4vbjo")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t0pi5"]
 shader = ExtResource("2_pppcv")
-shader_parameter/colour_offset = 1.0
+shader_parameter/colour_offset = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qckqf"]
 
@@ -51,14 +56,16 @@ surface_material_override/0 = SubResource("StandardMaterial3D_qgput")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
-size = Vector2i(1084, 777)
+size = Vector2i(1084, 1115)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewport"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_t0pi5")
-position = Vector2(542, 388)
+position = Vector2(542, 557)
 sprite_frames = ExtResource("2_5iw2l")
-animation = &"walljump"
+animation = &"dash"
+frame = 59
+frame_progress = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0437012, 0)
@@ -187,6 +194,21 @@ offset_right = 44.0
 offset_bottom = 24.0
 shortcut = SubResource("Shortcut_1hbyg")
 text = "show debug"
+
+[node name="sound" type="Node" parent="."]
+script = ExtResource("15_ujco5")
+
+[node name="Die" type="AudioStreamPlayer" parent="sound"]
+stream = ExtResource("16_x5ewy")
+
+[node name="FastRun" type="AudioStreamPlayer" parent="sound"]
+stream = ExtResource("17_fl2k3")
+
+[node name="Jump" type="AudioStreamPlayer" parent="sound"]
+stream = ExtResource("18_ulucy")
+
+[node name="Walk" type="AudioStreamPlayer" parent="sound"]
+stream = ExtResource("19_npxye")
 
 [connection signal="landed" from="." to="statemachine/dive" method="_on_yarts_landed"]
 [connection signal="player_death" from="." to="statemachine/cut_scene" method="_on_yarts_player_death"]

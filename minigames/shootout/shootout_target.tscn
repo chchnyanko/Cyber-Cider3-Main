@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dk551kq5lk7n4"]
+
+[ext_resource type="Script" path="res://minigames/shootout/shootout_target.gd" id="1_i53i5"]
+[ext_resource type="Texture2D" uid="uid://boetn5loiu0j5" path="res://minigames/shootout/carls_brother.png" id="2_vm12r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_duqvk"]
+size = Vector2(305, 342)
+
+[node name="shootout_target" type="Area2D"]
+script = ExtResource("1_i53i5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_vm12r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -1)
+shape = SubResource("RectangleShape2D_duqvk")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

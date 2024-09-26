@@ -1,0 +1,41 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://cichtyvnk4eac"]
+
+[ext_resource type="Texture2D" uid="uid://c7gkq50hg6nua" path="res://minigames/match-a-block/blue.png" id="1_fcwl4"]
+[ext_resource type="Texture2D" uid="uid://cl6c8jgele78y" path="res://minigames/match-a-block/brown.png" id="2_0weu1"]
+[ext_resource type="Texture2D" uid="uid://bgkj4nep5ws6t" path="res://minigames/match-a-block/green.png" id="3_hk8b5"]
+[ext_resource type="Texture2D" uid="uid://ch43n4xo7cwo5" path="res://minigames/match-a-block/red.png" id="4_c5ey2"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fcwl4")
+}],
+"loop": true,
+"name": &"blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0weu1")
+}],
+"loop": true,
+"name": &"brown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hk8b5")
+}],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_c5ey2")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}]

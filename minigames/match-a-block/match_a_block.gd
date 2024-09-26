@@ -1,7 +1,7 @@
 extends Node2D
 
-@export_color_no_alpha var colours: Array[Color]
-@export_range(1, 100, 1) var score_to_win: int
+@export var colours: Array[String]
+@export_range(0, 100, 1) var score_to_win: int
 
 @onready var blocks_parent: Node = $blocks
 @onready var cursor: Sprite2D = $cursor
@@ -23,14 +23,14 @@ func _ready() -> void:
 	for y in 5:
 		for x in 5:
 			var index: int = int(y * 5 + x)
-			var block: ColorRect = blocks_parent.get_child(index)
+			var block: AnimatedSprite2D = blocks_parent.get_child(index)
 			var random_colour = randi_range(0, colours.size() - 1)
-			var colour: Color = colours[random_colour]
+			var colour: String = colours[random_colour]
 			blocks.append(block)
 			block_colours.append(random_colour)
 			block_position.append(index)
 			positions.append(block.position)
-			block.color = colour
+			block.animation = colour
 
 func _process(delta: float) -> void:
 	cursor_index = cursor_pos.x + cursor_pos.y * 5
@@ -71,7 +71,7 @@ func _process(delta: float) -> void:
 	#endregion
 	else:
 		#region cursor movement
-		cursor.position = lerp(cursor.position, positions[cursor_index] + Vector2(15, 15), 0.2)
+		cursor.position = lerp(cursor.position, positions[cursor_index], 0.2)
 		if Input.is_action_just_pressed("up"):
 			cursor_pos.y -= 1
 		if Input.is_action_just_pressed("down"):
@@ -123,19 +123,19 @@ func clear_row(axis: String, row: int):
 		for i in 5:
 			var index = row + i * 5
 			var random_colour = randi_range(0, colours.size() - 1)
-			var colour: Color = colours[random_colour]
+			var colour: String = colours[random_colour]
 			var pos = block_position.find(index)
 			block_colours[pos] = random_colour
-			blocks_parent.get_child(pos).color = colour
+			blocks_parent.get_child(pos).animation = colour
 	if axis == "y":
 		for i in 5:
 			var index = row * 5 + i
 			var random_colour = randi_range(0, colours.size() - 1)
-			var colour: Color = colours[random_colour]
+			var colour: String = colours[random_colour]
 			var pos = block_position.find(index)
 			block_colours[pos] = random_colour
-			blocks_parent.get_child(pos).color = colour
-	if score > score_to_win - 1:
+			blocks_parent.get_child(pos).animation = colour
+	if score > score_to_win - 1 and score_to_win != 0:
 		win()
 
 func win():

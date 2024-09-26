@@ -1,7 +1,7 @@
 extends Node2D
 
 @export_range(1, 100, 1) var length: int
-@export_range(1, 3) var level: int
+@export_enum("Walk / Jump: 1", "Dash: 2", "Wall jump / Double jump: 3") var level: int
 
 @onready var player: CharacterBody2D = $player
 @onready var label: Label = $Label

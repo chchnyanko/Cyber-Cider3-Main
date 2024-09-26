@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 data="*res://autoloads/save.gd"
 unlocks="*res://autoloads/unlocks.gd"
 settings="*res://autoloads/settings.gd"
+music="*res://autoloads/music.tscn"
 
 [display]
 

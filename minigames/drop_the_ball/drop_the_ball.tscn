@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqb71aacsosa0"]
+
+[ext_resource type="Script" path="res://minigames/drop_the_ball/drop_the_ball.gd" id="1_ljm85"]
+[ext_resource type="Texture2D" uid="uid://cb6677unne3ws" path="res://icon.svg" id="2_y240u"]
+[ext_resource type="Texture2D" uid="uid://1fwgdjumybyl" path="res://minigames/find_the_ball/ball.png" id="3_fcfun"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mfjya"]
+radius = 18.2483
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3puju"]
+size = Vector2(124, 122)
+
+[node name="drop_the_ball" type="Node2D"]
+script = ExtResource("1_ljm85")
+grabber_speed = 800
+
+[node name="grabber" type="Sprite2D" parent="."]
+position = Vector2(235, 213)
+texture = ExtResource("2_y240u")
+
+[node name="ball" type="RigidBody2D" parent="."]
+position = Vector2(235, 852)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ball"]
+shape = SubResource("CircleShape2D_mfjya")
+
+[node name="ball" type="Sprite2D" parent="ball"]
+texture = ExtResource("3_fcfun")
+
+[node name="dropper" type="Area2D" parent="."]
+position = Vector2(1305, 976)
+
+[node name="Sprite2D" type="Sprite2D" parent="dropper"]
+texture = ExtResource("2_y240u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dropper"]
+shape = SubResource("RectangleShape2D_3puju")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="dropper" to="." method="_on_dropper_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

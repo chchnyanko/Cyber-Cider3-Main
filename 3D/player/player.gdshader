@@ -9,9 +9,4 @@ void vertex() {
 void fragment() {
 	COLOR = texture(TEXTURE, UV);
 	COLOR.rgb += colour_offset;
-	if(COLOR.a == 0.0){
-		COLOR = vec4(1.0, 1.0, 1.0, 1.0);
-	}else{
-		COLOR = vec4(0.0, 0.0, 0.0, 1.0);
-	}
 }

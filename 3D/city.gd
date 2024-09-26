@@ -5,7 +5,7 @@ func _ready() -> void:
 		return
 	$Yarts.change_state($Yarts.statemachine.cut_scene, "tutorial")
 	data.tutorial = true
-
+	music.change_song()
 
 func _on_top_of_tower_body_entered(body: Node3D) -> void:
 	if body is yarts:
