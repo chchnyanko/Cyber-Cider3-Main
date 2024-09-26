@@ -10,7 +10,7 @@ extends Node2D
 @onready var fail: AnimatedSprite2D = $fail
 
 const ingredients: Dictionary = {
-	"carrot": ["color", "#ffa600"],
+	"carrot": ["color", "#ff0000"],
 	"radish": ["pulse", "freq=1.0 color=#000000 ease=-2.0"],
 	"cherry": ["shake", "rate=100"],
 	"egg": ["wave", "amp=1"],
@@ -43,7 +43,7 @@ func remove_item(item_name: String = ""):
 		return
 
 func set_text(resetting: bool = false):
-	instruction.text = "To make the potion you must bring these ingredients and place them in my cauldron \n"
+	instruction.text = "Ingredients \n"
 	if resetting:
 		for i in needed_ingredients.size():
 			instruction.text += get_text(needed_ingredients[i])

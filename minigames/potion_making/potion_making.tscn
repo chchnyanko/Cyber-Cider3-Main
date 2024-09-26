@@ -1,7 +1,8 @@
-[gd_scene load_steps=69 format=3 uid="uid://cwm6dc04jsmft"]
+[gd_scene load_steps=70 format=3 uid="uid://cwm6dc04jsmft"]
 
 [ext_resource type="Script" path="res://minigames/potion_making/potion_making.gd" id="1_hx682"]
 [ext_resource type="Texture2D" uid="uid://ca3oj3jcjx14o" path="res://minigames/potion_making/cauldron bubble.png" id="2_7w80b"]
+[ext_resource type="Texture2D" uid="uid://dr66ykmtpq4r4" path="res://minigames/potion_making/paper.png" id="2_6450g"]
 [ext_resource type="Texture2D" uid="uid://bm0pykf7tl5pg" path="res://minigames/potion_making/cauldron with stick.png" id="3_j4fwg"]
 [ext_resource type="Texture2D" uid="uid://dg1c3bdf0gmnb" path="res://minigames/potion_making/cauldron.png" id="4_rvtai"]
 [ext_resource type="Texture2D" uid="uid://clc67xbve07vj" path="res://minigames/potion_making/cauldron stir.png" id="5_o2m72"]
@@ -471,11 +472,16 @@ script = ExtResource("1_hx682")
 number_of_items = 3
 number_of_fake_items = 3
 
+[node name="Paper" type="Sprite2D" parent="."]
+position = Vector2(1644, 328)
+scale = Vector2(5.23958, 5.23958)
+texture = ExtResource("2_6450g")
+
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 1116.0
-offset_top = -4.0
-offset_right = 1925.0
-offset_bottom = 1095.0
+offset_left = 1483.0
+offset_top = 109.0
+offset_right = 1802.0
+offset_bottom = 579.0
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 scroll_active = false
