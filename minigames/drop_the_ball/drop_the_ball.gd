@@ -2,7 +2,7 @@ extends Node2D
 
 @export_range(500, 1500, 100) var grabber_speed: int
 
-@onready var grabber: Sprite2D = $grabber
+@onready var grabber: AnimatedSprite2D = $grabber
 @onready var ball: RigidBody2D = $ball
 @onready var dropper: Area2D = $dropper
 
@@ -14,6 +14,7 @@ func _ready() -> void:
 	grabber.position = Vector2(100, 200)
 	ball.position = Vector2(100, 800)
 	ball.freeze = true
+	ball.get_child(0).play("idle")
 
 func _process(delta: float) -> void:
 	if current_state == 0: #grabbing ball
@@ -32,6 +33,7 @@ func _process(delta: float) -> void:
 			current_state += 1
 	if current_state == 3:
 		if Input.is_action_just_released("jump") or grabber.position.x > 1900:
+			grabber.play("open")
 			current_state += 1
 			ball.freeze = false
 		grabber.position.x += grabber_speed * delta
@@ -48,7 +50,7 @@ func win() -> void:
 
 func lose() -> void:
 	current_state += 1
-	$Timer.start(0.5)
+	$Timer.start(1)
 
 func _on_dropper_body_entered(body: Node2D) -> void:
 	if body == ball:

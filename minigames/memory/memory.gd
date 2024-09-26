@@ -68,6 +68,7 @@ func _on_timer_timeout() -> void:
 		if current_button <= total_buttons:
 			count()
 		else:
+			animation.play("done")
 			current_state = 2
 			current_button = 0
 	elif current_state == 3:

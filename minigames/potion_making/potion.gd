@@ -2,20 +2,18 @@ extends Area2D
 
 class_name potion
 
-@onready var label: RichTextLabel = $label
+@onready var sprite: AnimatedSprite2D = $sprite
 
 var moving: bool = false
 var item_name: String
 
 func set_item_name(new_item_name: String):
 	item_name = new_item_name
-
-func change_text(new_text: String):
-	label.text = new_text
+	sprite.animation = new_item_name
 
 func change_position():
-	position.x = randi_range(0, 1000)
-	position.y = randi_range(0, 1000)
+	position.x = randi_range(100, 1000)
+	position.y = randi_range(100, 1000)
 
 func _process(delta: float) -> void:
 	if moving:
@@ -30,10 +28,14 @@ func _input(event: InputEvent) -> void:
 		if event.pressed == false:
 			moving = false
 
+func _on_mouse_entered() -> void:
+	sprite.play(str(item_name, "_hover"))
+
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if event.pressed == true:
 			moving = true
+			sprite.play(str(item_name, "_pressed"))
 		else:
 			moving = false
 
