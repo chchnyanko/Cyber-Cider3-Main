@@ -17,10 +17,9 @@ func enter_state():
 	player.velocity = Vector3.ZERO
 	if cutscene_name == "tutorial":
 		player.play_animation("wakeup")
-		timer.start(5)
-		$tutorial.show()
-		$tutorial.global_position = player.global_position + Vector3(0, 3, 0)
-
+		timer.start(1)
+	if cutscene_name == "end":
+		timer.start(1)
 
 func exit_state():
 	cutscene_name = ""
@@ -36,9 +35,10 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		return
 	elif cutscene_name == "death":
 		get_tree().change_scene_to_file("res://3D/city.tscn")
+	elif cutscene_name == "end":
+		get_tree().change_scene_to_file("res://ui menu/credits.tscn")
 
 
 func _on_timer_timeout() -> void:
 	if cutscene_name == "tutorial":
-		$tutorial.hide()
 		player.change_state(states.idle)

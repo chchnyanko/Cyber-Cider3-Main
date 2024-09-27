@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cts0v4n052ng2"]
+[gd_scene load_steps=14 format=3 uid="uid://cts0v4n052ng2"]
 
 [ext_resource type="Script" path="res://minigames/platformer/specody/player.gd" id="1_kr211"]
 [ext_resource type="SpriteFrames" uid="uid://b6rkuy0wdv5py" path="res://minigames/platformer/specody/nightanimation.tres" id="2_76dnv"]
+[ext_resource type="Shader" path="res://3D/player/player.gdshader" id="2_d5m2j"]
 [ext_resource type="Script" path="res://minigames/platformer/specody/states.gd" id="3_ed7me"]
 [ext_resource type="Script" path="res://minigames/platformer/specody/dash.gd" id="4_ad6p3"]
 [ext_resource type="Script" path="res://minigames/platformer/specody/fall.gd" id="5_da48b"]
@@ -11,6 +12,10 @@
 [ext_resource type="Script" path="res://minigames/platformer/specody/wall.gd" id="9_ksguu"]
 [ext_resource type="Script" path="res://minigames/platformer/specody/walljump.gd" id="10_cc4je"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dxff2"]
+shader = ExtResource("2_d5m2j")
+shader_parameter/colour_offset = 1.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cnmf2"]
 size = Vector2(32, 62)
 
@@ -19,8 +24,8 @@ z_index = 50
 script = ExtResource("1_kr211")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-self_modulate = Color(0, 0, 0, 1)
 texture_filter = 1
+material = SubResource("ShaderMaterial_dxff2")
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("2_76dnv")
 animation = &"dash"
@@ -93,9 +98,12 @@ wait_time = 5.0
 [node name="jumpbuffer" type="Timer" parent="."]
 one_shot = true
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="states/dash/dashduration" to="states/dash" method="_on_dashduration_timeout"]
 [connection signal="timeout" from="states/fall/coyotetime" to="states/fall" method="_on_coyotetimer_timeout"]
 [connection signal="timeout" from="states/walljump/walljumptime" to="states/walljump" method="_on_walljumptime_timeout"]
 [connection signal="timeout" from="fallTimer" to="." method="_on_fall_timer_timeout"]
 [connection signal="timeout" from="jumpbuffer" to="." method="_on_jumpbuffer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

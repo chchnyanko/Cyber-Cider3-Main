@@ -37,17 +37,21 @@ func _process(delta: float) -> void:
 
 func _on_timer_timeout() -> void:
 	timer.value -= 1
-	print(timer.value)
-	if timer.value == 0 or won:
+	if timer.value == 0 or won and timer.value != -11:
 		if won:
 			label.text = "You win"
-			won = false
 		else:
 			label.text = "You lose"
 		timer.value = -10
 		tick_clock.start(0.5)
 	elif timer.value == -11:
-		get_tree().change_scene_to_file("res://minigames/minigames.tscn")
+		if unlocks.cube_1_2:
+			get_tree().change_scene_to_file("res://minigames/minigames.tscn")
+		else:
+			if won:
+				unlocks.cube_1_2 = true
+				unlocks.cubes += 1
+			get_tree().change_scene_to_file("res://3D/city.tscn")
 	else:
 		tick_clock.start(0.1)
 

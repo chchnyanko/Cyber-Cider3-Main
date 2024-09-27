@@ -105,3 +105,6 @@ func _on_animated_sprite_2d_animation_finished():
 
 func _on_jumpbuffer_timeout():
 	jump_input_actuation = false
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	get_parent().lose()

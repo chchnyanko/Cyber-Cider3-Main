@@ -1,12 +1,18 @@
-[gd_scene load_steps=70 format=3 uid="uid://cwm6dc04jsmft"]
+[gd_scene load_steps=73 format=3 uid="uid://cwm6dc04jsmft"]
 
 [ext_resource type="Script" path="res://minigames/potion_making/potion_making.gd" id="1_hx682"]
 [ext_resource type="Texture2D" uid="uid://ca3oj3jcjx14o" path="res://minigames/potion_making/cauldron bubble.png" id="2_7w80b"]
 [ext_resource type="Texture2D" uid="uid://dr66ykmtpq4r4" path="res://minigames/potion_making/paper.png" id="2_6450g"]
+[ext_resource type="Texture2D" uid="uid://dmdupw8vnmp8e" path="res://minigames/backgrounds/potion_bg.png" id="2_g6arl"]
 [ext_resource type="Texture2D" uid="uid://bm0pykf7tl5pg" path="res://minigames/potion_making/cauldron with stick.png" id="3_j4fwg"]
+[ext_resource type="Texture2D" uid="uid://djnu4ldypdnbu" path="res://minigames/backgrounds/potion_bg_normal.png" id="3_qavtb"]
 [ext_resource type="Texture2D" uid="uid://dg1c3bdf0gmnb" path="res://minigames/potion_making/cauldron.png" id="4_rvtai"]
 [ext_resource type="Texture2D" uid="uid://clc67xbve07vj" path="res://minigames/potion_making/cauldron stir.png" id="5_o2m72"]
 [ext_resource type="Texture2D" uid="uid://cfunvx22q070q" path="res://minigames/potion_making/fail.png" id="6_c03dd"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_vq003"]
+diffuse_texture = ExtResource("2_g6arl")
+normal_texture = ExtResource("3_qavtb")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dpcid"]
 atlas = ExtResource("2_7w80b")
@@ -469,8 +475,12 @@ animations = [{
 
 [node name="potion_making" type="Node2D"]
 script = ExtResource("1_hx682")
-number_of_items = 3
+number_of_items = 5
 number_of_fake_items = 3
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(881, 515)
+texture = SubResource("CanvasTexture_vq003")
 
 [node name="Paper" type="Sprite2D" parent="."]
 position = Vector2(1644, 328)

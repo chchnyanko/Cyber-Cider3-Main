@@ -14,6 +14,7 @@ var random_order: Array[int]
 var current_state: int = 0 #0 - starting, 1 - buttons showing, 2 - click buttons
 var current_button: int = 0
 var total_buttons: int = 0
+var won: bool = false
 
 func _ready() -> void:
 	for i in buttons_parent.get_child_count():
@@ -72,9 +73,16 @@ func _on_timer_timeout() -> void:
 			current_state = 2
 			current_button = 0
 	elif current_state == 3:
-		get_tree().change_scene_to_file("res://minigames/minigames.tscn")
+		if unlocks.cube_1_5:
+			get_tree().change_scene_to_file("res://minigames/minigames.tscn")
+		else:
+			if won:
+				unlocks.cubes += 1
+				unlocks.cube_1_5 = true
+			get_tree().change_scene_to_file("res://3D/city.tscn")
 
 func win() -> void:
+	won = true
 	label.text = "You win"
 	end()
 

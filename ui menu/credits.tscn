@@ -2,6 +2,21 @@
 
 [ext_resource type="Script" path="res://ui menu/credits.gd" id="1_xkvfr"]
 
+[sub_resource type="Animation" id="Animation_orlkk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(606, 447)]
+}
+
 [sub_resource type="Animation" id="Animation_unpg7"]
 resource_name = "credits"
 length = 25.0
@@ -12,10 +27,10 @@ tracks/0/path = NodePath("Label:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.433333, 19.9333),
+"times": PackedFloat32Array(0.433333, 20),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(204, 447), Vector2(204, -8648)]
+"values": [Vector2(204, 447), Vector2(204, -9078)]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -32,21 +47,6 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_orlkk"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Label:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(606, 447)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i13fx"]
 _data = {
 "RESET": SubResource("Animation_orlkk"),
@@ -57,10 +57,10 @@ _data = {
 script = ExtResource("1_xkvfr")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 606.0
+offset_left = 204.0
 offset_top = 447.0
-offset_right = 2129.0
-offset_bottom = 9684.0
+offset_right = 1727.0
+offset_bottom = 10104.0
 theme_override_font_sizes/font_size = 100
 text = "Cyber Cider3
 
@@ -86,6 +86,9 @@ Levi Donaldson
 
 2D art
 Levi Donalson
+
+Art editor
+Matthew Rickard
 
 
 Environment design

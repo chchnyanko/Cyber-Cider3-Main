@@ -88,4 +88,10 @@ func win():
 	timer.start(1)
 
 func _on_timer_timeout() -> void:
-	get_tree().change_scene_to_file("res://minigames/minigames.tscn")
+	if unlocks.cube_2_3:
+		get_tree().change_scene_to_file("res://minigames/minigames.tscn")
+	else:
+		if won:
+			unlocks.cubes += 1
+			unlocks.cube_2_3 = true
+		get_tree().change_scene_to_file("res://3D/city.tscn")

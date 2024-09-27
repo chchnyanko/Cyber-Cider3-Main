@@ -10,14 +10,14 @@ extends Node2D
 
 var code: Array[int]
 var input_dir: float = 0
-var num: int = 0
+var num: int = 1
 var choosing_right_number: bool
 
 var won: bool = false
 
 func _ready() -> void:
 	for i in code_length:
-		var rand_num: int = randi_range(0, 9)
+		var rand_num: int = randi_range(1, 8)
 		code.append(rand_num)
 	set_text()
 
@@ -26,22 +26,22 @@ func _process(delta: float) -> void:
 		change_num(-1)
 	if Input.is_action_just_pressed("right"):
 		change_num(1)
-	dial.rotation = lerp_angle(dial.rotation, -PI / 5 * num, 0.2)
+	dial.rotation = lerp_angle(dial.rotation, PI / 4 * num - PI / 4, 0.2)
 
 func set_text() -> void:
 	label.text = ""
 	for i in code.size():
 		label.text += str(code[i])
 		if i < code.size() - 1:
-			label.text += ", "
+			label.text += ", \n"
 
 func change_num(change: int) -> void:
 	choosing_right_number = false
 	num += change
-	if num < 0:
-		num += 10
-	if num > 9:
-		num -= 10
+	if num < 1:
+		num += 8
+	if num > 8:
+		num -= 8
 	label_2.text = str(num)
 	
 	if num == code[0]:
@@ -54,7 +54,13 @@ func win() -> void:
 
 func _on_timer_timeout() -> void:
 	if won:
-		get_tree().change_scene_to_file("res://minigames/minigames.tscn")
+		if unlocks.cube_1_4:
+			get_tree().change_scene_to_file("res://minigames/minigames.tscn")
+		else:
+			if won:
+				unlocks.cubes += 1
+				unlocks.cube_1_4 = true
+			get_tree().change_scene_to_file("res://3D/city.tscn")
 	if choosing_right_number:
 		code.pop_front()
 		set_text()

@@ -1,8 +1,9 @@
-[gd_scene load_steps=68 format=3 uid="uid://c2idx8lri6j4e"]
+[gd_scene load_steps=69 format=3 uid="uid://c2idx8lri6j4e"]
 
 [ext_resource type="Script" path="res://minigames/shootout/shootout.gd" id="1_cnsjo"]
 [ext_resource type="Texture2D" uid="uid://bbkgg1tucqlel" path="res://minigames/shootout/gun.png" id="2_ol3n1"]
 [ext_resource type="Texture2D" uid="uid://chpef54rriio6" path="res://minigames/shootout/crosshair.png" id="3_utnic"]
+[ext_resource type="Texture2D" uid="uid://bc7wtfj0efdva" path="res://minigames/backgrounds/shoot_out_bg.png" id="4_he702"]
 
 [sub_resource type="Animation" id="Animation_uxx0s"]
 length = 0.001
@@ -472,7 +473,12 @@ animations = [{
 
 [node name="shootout" type="Node2D"]
 script = ExtResource("1_cnsjo")
-difficulty = 10
+difficulty = 5
+
+[node name="ShootOutBg" type="Sprite2D" parent="."]
+position = Vector2(958.5, 541.5)
+scale = Vector2(1.06833, 0.905833)
+texture = ExtResource("4_he702")
 
 [node name="Gun" type="Sprite2D" parent="."]
 z_index = 2

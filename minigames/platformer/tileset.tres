@@ -1,20 +1,20 @@
-[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://b6lsimf27qnti"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://b6lsimf27qnti"]
 
-[ext_resource type="Texture2D" uid="uid://cb6677unne3ws" path="res://icon.svg" id="1_itcb5"]
+[ext_resource type="Texture2D" uid="uid://v665sgbfm2ei" path="res://minigames/platformer/wall.png" id="1_6o5yc"]
+[ext_resource type="Texture2D" uid="uid://b4xcjb3vxcv5g" path="res://minigames/platformer/nowall.png" id="2_hx42e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g666p"]
 resource_name = "wall"
-texture = ExtResource("1_itcb5")
+texture = ExtResource("1_6o5yc")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kaxor"]
 resource_name = "nowall"
-texture = ExtResource("1_itcb5")
+texture = ExtResource("2_hx42e")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
-0:0/0/modulate = Color(1, 0, 0, 1)
 0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [resource]

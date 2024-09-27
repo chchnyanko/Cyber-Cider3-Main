@@ -7,6 +7,7 @@ var cards_left: Array[int]
 var cards: Dictionary
 var clicked_cards: Vector2i
 var cleared_cards: Array[int]
+var won: bool = false
 
 func _ready() -> void:
 	for i in 5:
@@ -66,7 +67,14 @@ func _input(event: InputEvent) -> void:
 			pressed(event.position)
 
 func win():
+	won = true
 	timer.start(1)
 
 func _on_timer_timeout() -> void:
-	get_tree().change_scene_to_file("res://minigames/minigames.tscn")
+	if unlocks.cube_2_5:
+		get_tree().change_scene_to_file("res://minigames/minigames.tscn")
+	else:
+		if won:
+			unlocks.cubes += 1
+			unlocks.cube_2_5 = true
+		get_tree().change_scene_to_file("res://3D/city.tscn")

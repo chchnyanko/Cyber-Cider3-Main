@@ -11,7 +11,7 @@
 
 [node name="find_the_ball" type="Node2D"]
 script = ExtResource("1_26u7a")
-max_moves = 10
+max_moves = 5
 speed = 0.2
 
 [node name="Ball" type="Sprite2D" parent="."]

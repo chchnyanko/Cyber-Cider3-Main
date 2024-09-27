@@ -1,6 +1,7 @@
-[gd_scene load_steps=167 format=3 uid="uid://buq7x6pkw7crl"]
+[gd_scene load_steps=168 format=3 uid="uid://buq7x6pkw7crl"]
 
 [ext_resource type="Script" path="res://minigames/memory/memory.gd" id="1_mkepb"]
+[ext_resource type="Texture2D" uid="uid://dmdupw8vnmp8e" path="res://minigames/backgrounds/potion_bg.png" id="2_6d7vy"]
 [ext_resource type="Texture2D" uid="uid://caofct27iycau" path="res://minigames/memory/hover button.png" id="2_eh08r"]
 [ext_resource type="Texture2D" uid="uid://j5hoxhrpuhc" path="res://minigames/memory/not pressed button.png" id="3_xrd1r"]
 [ext_resource type="Texture2D" uid="uid://byx8ee4e6b5nc" path="res://minigames/memory/select button.png" id="4_u7c5c"]
@@ -1132,22 +1133,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_5thqg"]
-resource_name = "wrong"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Bar:modulate")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 0.133333, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_65817"]
 resource_name = "done"
 length = 0.3
@@ -1164,6 +1149,22 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(0, 0, 1, 1), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_5thqg"]
+resource_name = "wrong"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bar:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.133333, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h2gqq"]
 _data = {
 "RESET": SubResource("Animation_norap"),
@@ -1175,7 +1176,11 @@ _data = {
 [node name="memory" type="Node2D"]
 script = ExtResource("1_mkepb")
 show_time = 0.5
-max_buttons = 10
+max_buttons = 4
+
+[node name="PotionBg" type="Sprite2D" parent="."]
+position = Vector2(942, 486)
+texture = ExtResource("2_6d7vy")
 
 [node name="button" type="Node" parent="."]
 

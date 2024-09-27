@@ -29,11 +29,11 @@ func _ready() -> void:
 		states.player = self
 		states.ceiling_checker = ceiling_checker
 	current_state = statemachine.idle
+	sprite.material.set_shader_parameter("colour_offset", settings.get("player_visibility"))
+	get_parent().set_level()
 	if data.checkpoint_name != "none":
 		position = data.checkpoint_pos
-		position.y += 0.5 
-	sprite.material.set_shader_parameter("colour_offset", settings.get("player_visibility"))
-	
+		position.y += 0.5
 	camera_move.connect(camera_3d.update_moving)
 
 

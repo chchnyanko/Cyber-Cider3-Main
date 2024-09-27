@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://5mvx55gwdhj5"]
+[gd_scene load_steps=10 format=3 uid="uid://5mvx55gwdhj5"]
 
 [ext_resource type="Script" path="res://minigames/memory2/memory2.gd" id="1_xi1j1"]
+[ext_resource type="Texture2D" uid="uid://bc7wtfj0efdva" path="res://minigames/backgrounds/shoot_out_bg.png" id="2_cxy2c"]
 [ext_resource type="Texture2D" uid="uid://dwgkvicv06vry" path="res://minigames/memory2/bell cat.png" id="2_doteh"]
 [ext_resource type="Texture2D" uid="uid://m0aooewbxbyl" path="res://minigames/memory2/carl.png" id="3_2rk1k"]
 [ext_resource type="Texture2D" uid="uid://bivit8yc1vndw" path="res://minigames/memory2/cow cat.png" id="4_f41yt"]
@@ -61,6 +62,11 @@ animations = [{
 
 [node name="memory2" type="Node2D"]
 script = ExtResource("1_xi1j1")
+
+[node name="ShootOutBg" type="Sprite2D" parent="."]
+position = Vector2(958.5, 541.5)
+scale = Vector2(1.06833, 0.905833)
+texture = ExtResource("2_cxy2c")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

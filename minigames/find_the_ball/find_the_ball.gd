@@ -82,4 +82,10 @@ func cup_pressed(cup) -> void:
 
 func _on_timer_timeout() -> void:
 	if current_state == 4:
-		get_tree().change_scene_to_file("res://minigames/minigames.tscn")
+		if unlocks.cube_1_1:
+			get_tree().change_scene_to_file("res://minigames/minigames.tscn")
+		else:
+			if won:
+				unlocks.cubes += 1
+				unlocks.cube_1_1 = true
+			get_tree().change_scene_to_file("res://3D/city.tscn")

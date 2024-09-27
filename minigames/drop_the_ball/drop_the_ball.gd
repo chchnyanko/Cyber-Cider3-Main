@@ -8,6 +8,7 @@ extends Node2D
 
 var current_state: int = 0
 var ball_vely: float = 0
+var won: bool = false
 
 func _ready() -> void:
 	dropper.position.x = randi_range(500, 1600)
@@ -44,6 +45,7 @@ func _process(delta: float) -> void:
 	print(ball.position)
 
 func win() -> void:
+	won = true
 	current_state += 1
 	$Label.text = "You win"
 	$Timer.start(0.5)
@@ -56,6 +58,11 @@ func _on_dropper_body_entered(body: Node2D) -> void:
 	if body == ball:
 		win()
 
-
 func _on_timer_timeout() -> void:
-	get_tree().change_scene_to_file("res://minigames/minigames.tscn")
+	if unlocks.cube_2_6:
+		get_tree().change_scene_to_file("res://minigames/minigames.tscn")
+	else:
+		if won:
+			unlocks.cubes += 1
+			unlocks.cube_2_6 = true
+		get_tree().change_scene_to_file("res://3D/city.tscn")

@@ -226,3 +226,13 @@ points = PackedVector2Array(0, 0, 0, 0)
 libraries = {
 "": SubResource("AnimationLibrary_wfivf")
 }
+
+[node name="Button13" type="Button" parent="." groups=["ui_button"]]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 970.0
+offset_right = 264.0
+offset_bottom = 1047.0
+theme_override_font_sizes/font_size = 50
+text = "Back"
+metadata/scene = "ui menu/title"

@@ -1,17 +1,23 @@
-[gd_scene load_steps=6 format=4 uid="uid://boir43qdgiiti"]
+[gd_scene load_steps=9 format=4 uid="uid://boir43qdgiiti"]
 
 [ext_resource type="Script" path="res://minigames/platformer/platformer.gd" id="1_8ba01"]
-[ext_resource type="Texture2D" uid="uid://cb6677unne3ws" path="res://icon.svg" id="4_tpqc5"]
+[ext_resource type="Texture2D" uid="uid://vyj75681an8" path="res://minigames/platformer/door.png" id="3_5auwh"]
 [ext_resource type="PackedScene" uid="uid://tav7fr2yruax" path="res://minigames/platformer/tiletemplate15.tscn" id="4_vcn8r"]
+[ext_resource type="Texture2D" uid="uid://cyx1qwa4cvrvt" path="res://minigames/backgrounds/specteral_bg.png" id="5_1ytc4"]
+[ext_resource type="Texture2D" uid="uid://djnu4ldypdnbu" path="res://minigames/backgrounds/potion_bg_normal.png" id="6_q8trf"]
 [ext_resource type="PackedScene" uid="uid://cts0v4n052ng2" path="res://minigames/platformer/specody/player.tscn" id="6_yqqqe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yjldp"]
-size = Vector2(75, 156)
+size = Vector2(76, 116)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_vbyt5"]
+diffuse_texture = ExtResource("5_1ytc4")
+normal_texture = ExtResource("6_q8trf")
 
 [node name="platformer" type="Node2D"]
 script = ExtResource("1_8ba01")
-length = 5
-level = 3
+length = 3
+level = 1
 
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
@@ -20,21 +26,23 @@ offset_bottom = 23.0
 [node name="player" parent="." instance=ExtResource("6_yqqqe")]
 position = Vector2(66, 986)
 
-[node name="Camera2D" type="Camera2D" parent="player"]
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="player"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(66, 986)
 limit_left = 0
 limit_top = 0
 limit_bottom = 1080
 
 [node name="door" type="Area2D" parent="."]
-position = Vector2(-186, 1016)
+position = Vector2(-186, 1029)
 
 [node name="Sprite2D" type="Sprite2D" parent="door"]
-position = Vector2(-1.5, -79)
-scale = Vector2(0.585938, 1.25)
-texture = ExtResource("4_tpqc5")
+position = Vector2(-1.5, -57)
+texture = ExtResource("3_5auwh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="door"]
-position = Vector2(-0.5, -79)
+position = Vector2(-1, -59)
 shape = SubResource("RectangleShape2D_yjldp")
 
 [node name="Timer" type="Timer" parent="."]
@@ -42,6 +50,13 @@ one_shot = true
 
 [node name="tilemap" parent="." instance=ExtResource("4_vcn8r")]
 tile_map_data = PackedByteArray("AAD//xAAAQAAAAAAAAD//w8AAQAAAAAAAAD//w4AAQAAAAAAAAD//w0AAQAAAAAAAAD//wwAAQAAAAAAAAD//wsAAQAAAAAAAAD//woAAQAAAAAAAAD//wkAAQAAAAAAAAD//wgAAQAAAAAAAAD//wcAAQAAAAAAAAD//wYAAQAAAAAAAAD//wUAAQAAAAAAAAD//wQAAQAAAAAAAAD//wMAAQAAAAAAAAD//wIAAQAAAAAAAAD//wEAAQAAAAAAAAD//wAAAQAAAAAAAAA=")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="SpecteralBg" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(939, 559)
+texture = SubResource("CanvasTexture_vbyt5")
 
 [connection signal="body_entered" from="door" to="." method="_on_door_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

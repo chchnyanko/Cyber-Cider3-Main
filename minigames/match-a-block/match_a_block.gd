@@ -17,6 +17,7 @@ var cursor_pos: Vector2 = Vector2(2, 2)
 var cursor_index: int
 
 var score: int = 0
+var won: bool = false
 
 func _ready() -> void:
 	label.text = str("Current score: ", score)
@@ -139,8 +140,16 @@ func clear_row(axis: String, row: int):
 		win()
 
 func win():
+	won = true
 	if timer.time_left == 0:
 		timer.start(0.5)
 
 func _on_timer_timeout() -> void:
-	get_tree().change_scene_to_file("res://minigames/minigames.tscn")
+	
+	if unlocks.cube_2_2:
+		get_tree().change_scene_to_file("res://minigames/minigames.tscn")
+	else:
+		if won:
+			unlocks.cubes += 1
+			unlocks.cube_2_2 = true
+		get_tree().change_scene_to_file("res://3D/city.tscn")

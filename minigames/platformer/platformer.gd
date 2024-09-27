@@ -7,8 +7,9 @@ extends Node2D
 @onready var label: Label = $Label
 @onready var door: Area2D = $door
 @onready var timer: Timer = $Timer
-@onready var camera_2d: Camera2D = $player/Camera2D
+@onready var camera_2d: Camera2D = $Camera2D
 @onready var tilemap: TileMapLayer = $tilemap
+var won: bool = false
 
 func _ready() -> void:
 	if level == 0:
@@ -27,11 +28,10 @@ func _ready() -> void:
 	camera_2d.limit_right = 1920 * length
 
 func _process(delta: float) -> void:
-	#print(player.position)
-	if player.position.y > 1080:
-		lose()
+	camera_2d.position.x += 300 * delta
 
 func win():
+	won = true
 	label.text = "You win"
 	timer.start(0.5)
 
@@ -44,4 +44,10 @@ func _on_door_body_entered(body: Node2D) -> void:
 		win()
 
 func _on_timer_timeout() -> void:
-	get_tree().change_scene_to_file("res://minigames/minigames.tscn")
+	if unlocks.cube_1_3:
+		get_tree().change_scene_to_file("res://minigames/minigames.tscn")
+	else:
+		if won:
+			unlocks.cubes += 1
+			unlocks.cube_1_3 = true
+		get_tree().change_scene_to_file("res://3D/city.tscn")

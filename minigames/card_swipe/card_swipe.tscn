@@ -16,11 +16,11 @@ size = Vector2(472, 396)
 
 [node name="card_swipe" type="Node2D"]
 script = ExtResource("1_lrkus")
-max_time = 10.0
+max_time = 5.0
 position_smoothing = 0.5
-min_card_swipe_time = 0.7
+min_card_swipe_time = 0.4
 random_range_card_swipe_time = 0.5
-range_card_swipe_time = 0.3
+range_card_swipe_time = 0.6
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 offset_right = 40.0

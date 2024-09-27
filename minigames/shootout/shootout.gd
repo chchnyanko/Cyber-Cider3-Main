@@ -47,9 +47,14 @@ func die():
 			spawn_targets(phase * difficulty)
 
 func _on_timer_timeout() -> void:
-	if won:
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	if unlocks.cube_2_4:
 		get_tree().change_scene_to_file("res://minigames/minigames.tscn")
+	else:
+		if won:
+			unlocks.cubes += 1
+			unlocks.cube_2_4 = true
+		get_tree().change_scene_to_file("res://3D/city.tscn")
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
