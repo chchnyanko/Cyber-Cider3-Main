@@ -23,6 +23,8 @@ func save_game() -> void:
 	save_file.close()
 
 func load_game():
+	if !FileAccess.file_exists("user://save.data"):
+		return
 	var save_file = FileAccess.open("user://save.data", FileAccess.READ)
 	var save_data: Array
 	while save_file.get_position() < save_file.get_length():
@@ -52,6 +54,8 @@ func save_settings():
 	setting.close()
 
 func load_settings():
+	if !FileAccess.file_exists("user://settings.data"):
+		return
 	var setting = FileAccess.open("user://settings.data", FileAccess.READ)
 	var setting_data: Array
 	while setting.get_position() < setting.get_length():
