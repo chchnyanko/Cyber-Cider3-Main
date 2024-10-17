@@ -42,4 +42,4 @@ func _physics_process(delta: float) -> void:
 		camera_3d.position = camera_pos
 
 func update_moving(hi: bool) -> void:
-	moving = hi
+	moving = true

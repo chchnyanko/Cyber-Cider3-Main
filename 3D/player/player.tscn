@@ -32,7 +32,7 @@ albedo_texture = SubResource("ViewportTexture_4vbjo")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t0pi5"]
 shader = ExtResource("2_pppcv")
-shader_parameter/colour_offset = 0.0
+shader_parameter/colour_offset = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qckqf"]
 

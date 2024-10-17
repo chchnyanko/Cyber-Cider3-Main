@@ -57,9 +57,9 @@ _data = {
 script = ExtResource("1_xkvfr")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 204.0
+offset_left = 606.0
 offset_top = 447.0
-offset_right = 1727.0
+offset_right = 2129.0
 offset_bottom = 10104.0
 theme_override_font_sizes/font_size = 100
 text = "Cyber Cider3

@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://daxmno1j8b1bm"]
+[gd_scene load_steps=18 format=3 uid="uid://daxmno1j8b1bm"]
 
 [ext_resource type="PackedScene" uid="uid://d1hcf3nwyb30p" path="res://3D/player/player.tscn" id="1_3f1bf"]
 [ext_resource type="Script" path="res://3D/city.gd" id="1_cj0v4"]
-[ext_resource type="PackedScene" uid="uid://cs2fptc2k4veq" path="res://3D/skyshader/Lexpartizan Godot_4_sky_shader main sky/Sky.tscn" id="1_gg4t2"]
 [ext_resource type="PackedScene" uid="uid://cj25o88urgm2f" path="res://ui menu/pause.tscn" id="1_ri046"]
 [ext_resource type="PackedScene" uid="uid://56ssh7fxnv0d" path="res://3D/camera/camera.tscn" id="2_1iucd"]
 [ext_resource type="MeshLibrary" uid="uid://bj6axogdaay4p" path="res://3D/city decoration/road/road.tres" id="6_8dlft"]
@@ -15,16 +14,29 @@
 [ext_resource type="Texture2D" uid="uid://cptlb53dte4ls" path="res://3D/city decoration/grafiti/we_continue_grafiti.png" id="12_6q3ko"]
 [ext_resource type="Script" path="res://3D/top_of_tower.gd" id="14_mk16o"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0kt54"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_efwe0"]
+sky_material = SubResource("ProceduralSkyMaterial_0kt54")
+
+[sub_resource type="Environment" id="Environment_ekber"]
+background_mode = 1
+sky = SubResource("Sky_efwe0")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+tonemap_mode = 2
+glow_enabled = true
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_nnl86"]
 size = Vector3(10, 10, 10)
 
 [node name="City" type="Node3D"]
 script = ExtResource("1_cj0v4")
 
-[node name="sky" parent="." instance=ExtResource("1_gg4t2")]
-time_of_day_setup = 0.314
-sun_pos_default = Vector3(0.212238, 0.977218, 0)
-night_level_light = 0.2
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ekber")
 
 [node name="pause_screen" parent="." instance=ExtResource("1_ri046")]
 
@@ -445,4 +457,4 @@ script = ExtResource("14_mk16o")
 shape = SubResource("BoxShape3D_nnl86")
 
 [connection signal="camera_move" from="Yarts" to="camera" method="_on_yarts_camera_move"]
-[connection signal="body_entered" from="top_of_tower" to="." method="_on_top_of_tower_body_entered"]
+[connection signal="body_entered" from="top_of_tower" to="top_of_tower" method="_on_body_entered"]

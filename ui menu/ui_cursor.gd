@@ -78,9 +78,9 @@ func button_pressed(button):
 			data.load_game()
 	# Scene has to be the last one so that the scene doesn't change before everything else changes
 	if button.has_meta("scene"):
-		print(button.get_meta("scene"))
+		var scene: String = str("res://", button.get_meta("scene"), ".tscn")
 		get_tree().paused = false
-		get_tree().change_scene_to_file(str("res://", button.get_meta("scene"), ".tscn"))
+		get_tree().change_scene_to_file(scene)
 	
 	cursor.value = 30
 	cursor.rotation = 0

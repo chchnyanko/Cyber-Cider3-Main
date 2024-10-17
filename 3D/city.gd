@@ -24,7 +24,3 @@ func set_level():
 	if unlocks.climb == false:
 		if unlocks.cube_2_1 and unlocks.cube_2_2 and unlocks.cube_2_3 and unlocks.cube_2_4 and unlocks.cube_2_5 and unlocks.cube_2_6:
 			unlocks.climb = true
-
-func _on_top_of_tower_body_entered(body: Node3D) -> void:
-	if body is yarts:
-		body.change_state(body.statemachine.cut_scene, "end")

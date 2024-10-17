@@ -19,8 +19,8 @@ const MINIGAMES: Array[String] = [
 func _ready() -> void:
 	for i in get_tree().get_node_count_in_group("button"):
 		var index: Vector2i
-		index.x = int(ceil(i / 6))
-		index.y = int(i) % 6
+		index.x = int(ceil(i / 6) + 1)
+		index.y = int(i + 1) % 6
 		if index.y == 0:
 			index.y = 6
 		if !unlocks.get(str("cube_", index.x, "_", index.y)):

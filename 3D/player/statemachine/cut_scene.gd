@@ -35,8 +35,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		return
 	elif cutscene_name == "death":
 		get_tree().change_scene_to_file("res://3D/city.tscn")
-	elif cutscene_name == "end":
-		get_tree().change_scene_to_file("res://ui menu/credits.tscn")
 
 
 func _on_timer_timeout() -> void:

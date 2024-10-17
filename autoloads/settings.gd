@@ -2,7 +2,7 @@ extends Node
 
 const max_camera_distance: int = 30
 const max_camera_sensitivity: float = 1
-const default_camera_distance: int = 10
+const default_camera_distance: int = 5
 const default_camera_sensitivity: float = 0.2
 const default_player_visibility: float = 0.8
 

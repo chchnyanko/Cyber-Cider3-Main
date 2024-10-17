@@ -475,8 +475,8 @@ animations = [{
 
 [node name="potion_making" type="Node2D"]
 script = ExtResource("1_hx682")
-number_of_items = 5
-number_of_fake_items = 3
+number_of_items = 10
+number_of_fake_items = 10
 
 [node name="background" type="Sprite2D" parent="."]
 position = Vector2(881, 515)
